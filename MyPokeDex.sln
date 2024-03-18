@@ -1,0 +1,33 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34622.214
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyPokeDexWeb", "MyPokeDexWeb\MyPokeDexWeb.csproj", "{5742CAED-CA79-4168-BDB8-F9578ACAD41B}"
+EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "MyPokeDexDB", "MyPokeDexDB\MyPokeDexDB.sqlproj", "{A97A821D-770C-4D30-855C-506B02E9E852}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5742CAED-CA79-4168-BDB8-F9578ACAD41B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5742CAED-CA79-4168-BDB8-F9578ACAD41B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5742CAED-CA79-4168-BDB8-F9578ACAD41B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5742CAED-CA79-4168-BDB8-F9578ACAD41B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A97A821D-770C-4D30-855C-506B02E9E852}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A97A821D-770C-4D30-855C-506B02E9E852}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A97A821D-770C-4D30-855C-506B02E9E852}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{A97A821D-770C-4D30-855C-506B02E9E852}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A97A821D-770C-4D30-855C-506B02E9E852}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A97A821D-770C-4D30-855C-506B02E9E852}.Release|Any CPU.Deploy.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E41E863C-7E5E-4D5E-B4E1-10305E5EAD69}
+	EndGlobalSection
+EndGlobal
