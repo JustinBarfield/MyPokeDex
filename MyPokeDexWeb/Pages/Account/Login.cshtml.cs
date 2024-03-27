@@ -5,6 +5,8 @@ namespace MyPokeDexWeb.Pages
 {
     public class LoginModel : PageModel
     {
+        [BindProperty]
+        public string LoginUser { get; set; }
         public void OnGet()
         {
         }
