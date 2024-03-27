@@ -2,6 +2,7 @@ using System;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Data.SqlClient;
+using MyPokeDexWeb.Pages.Account.Model;
 
 namespace MyPokeDexWeb.Pages.Account
 {
@@ -28,8 +29,8 @@ namespace MyPokeDexWeb.Pages.Account
                 cmd.Parameters.AddWithValue("@firstName", NewPerson.FirstName);
 				cmd.Parameters.AddWithValue("@lastName", NewPerson.LastName);
 				cmd.Parameters.AddWithValue("@password", NewPerson.Password);
-				cmd.Parameters.AddWithValue("@email", NewPerson.email);
-				cmd.Parameters.AddWithValue("@telephone", NewPerson.Telephone);
+				cmd.Parameters.AddWithValue("@email", NewPerson.Email);
+				cmd.Parameters.AddWithValue("@telephone", NewPerson.Phone);
 				cmd.Parameters.AddWithValue("@roleid", NewPerson.RoleID);
 				cmd.Parameters.AddWithValue("@lastLoginTime", DateTime.Now.ToString());
                 //3. open the database
