@@ -23,11 +23,12 @@ namespace MyPokeDexWeb.Pages.Account
             {
                 //insert data into databse
                 //1. Create a database connection string
-                string connString = "Server=(localdb)\\MSSQLLocalDB;Database=MyPokedex;Trusted_Connection=true;";
-                SqlConnection conn = new SqlConnection(connString);
+
+               // string connString = "Server=(localdb)\\MSSQLLocalDB;Database=MyPokedex;Trusted_Connection=true;";
+                SqlConnection conn = new SqlConnection(SecurityHelper.GetDBConnectionString());
                 //2. Create a insert command
                 string cmdText = " INSERT INTO Person(FirstName, LastName, Email,Password, phone, RoleID, )" + 
-                    "Values(fFirstName, @lastName, @email, @password, @telephone, 2, @lastLogInTime, roleID)";
+                    "Values (fFirstName, @lastName, @email, @password, @telephone, 2, @lastLogInTime, roleID)";
                 SqlCommand cmd = new SqlCommand(cmdText, conn);
                 cmd.Parameters.AddWithValue("@firstName", NewPerson.FirstName);
 				cmd.Parameters.AddWithValue("@lastName", NewPerson.LastName);

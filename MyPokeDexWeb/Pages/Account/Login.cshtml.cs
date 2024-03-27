@@ -1,12 +1,14 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.Data.SqlClient;
+using MyPokedexBusiness;
 
 namespace MyPokeDexWeb.Pages
 {
     public class LoginModel : PageModel
     {
         [BindProperty]
-        public string LoginUser { get; set; }
+        public Login LoginUser { get; set; }
         public void OnGet()
         {
         }
@@ -15,7 +17,35 @@ namespace MyPokeDexWeb.Pages
         {
             if (ModelState.IsValid)
             {
-                return RedirectToPage("Profile");
+				SqlConnection conn = new SqlConnection(SecurityHelper.GetDBConnectionString());
+                string cmdText = "SELECT Password FROM  Person WHERE  Email=@email";
+                SqlCommand cmd = new SqlCommand(cmdText, conn);
+                conn.Open();
+                SqlDataReader reader = cmd.ExecuteReader();
+                if(reader.HasRows)
+                {
+                    reader.Read();
+                    if (!reader.IsDBNull(0))
+                    {
+                        string passwordHash = reader.GetString(0);
+                        if(SecurityHelper.VerifyPassword(LoginUser.Password, passwordHash)) {
+                            return RedirectToPage("Profile");
+                               
+                        }
+                        else
+                        {
+                            ModelState.AddModelError("Login Eror", "invalid credential, try again.");
+                            return Page();
+                        }
+                    }
+                }
+                else
+                {
+                    ModelState.AddModelError("Login Eror", "invalid credential, try again.");
+                    return Page();
+                }
+                conn.Close();
+				
             }
             else
             {

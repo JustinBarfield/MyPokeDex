@@ -15,5 +15,11 @@ namespace MyPokedexBusiness
 		{
 			return BCrypt.Net.BCrypt.EnhancedVerify(password, passwordHash);
 		}
+		public static string GetDBConnectionString()
+		{
+			string connString = "Server=(localdb)\\MSSQLLocalDB;Database=MyPokedex;Trusted_Connection=true;";
+			return connString;
+		}
+
 	}
 }
