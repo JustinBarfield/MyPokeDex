@@ -9,9 +9,10 @@
 				<div class="card bg-light text-black" style="border-radius:1rem;">
 					<div class="card-body p-5 text-center">
 						<form method="post">
+							<div class = "row text-danger" asp-validation-summary="All"></div>
 							<div class="row m-2">
 								<div>
-									<label class="form-label"> Email</label>
+									<label class="form-label" asp-for="LoginUser.Email"> Email</label>
 									<input type="email" class="form-control" />
 
 								</div>

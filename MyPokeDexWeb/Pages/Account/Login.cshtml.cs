@@ -9,9 +9,16 @@ namespace MyPokeDexWeb.Pages
         {
         }
 
-        public void OnPost()
+        public ActionResult OnPost()
         {
-        
+            if (ModelState.IsValid)
+            {
+                return RedirectToPage("Profile");
+            }
+            else
+            {
+                return Page();
+            }
         }
     }
 }

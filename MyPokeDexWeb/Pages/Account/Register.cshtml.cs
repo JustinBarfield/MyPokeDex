@@ -2,7 +2,10 @@ using System;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Data.SqlClient;
-using MyPokeDexWeb.Pages.Account.Model;
+using MyPokedexBusiness;
+using MyPokeDexWeb.Model;
+
+
 
 namespace MyPokeDexWeb.Pages.Account
 {
@@ -28,7 +31,7 @@ namespace MyPokeDexWeb.Pages.Account
                 SqlCommand cmd = new SqlCommand(cmdText, conn);
                 cmd.Parameters.AddWithValue("@firstName", NewPerson.FirstName);
 				cmd.Parameters.AddWithValue("@lastName", NewPerson.LastName);
-				cmd.Parameters.AddWithValue("@password", NewPerson.Password);
+				cmd.Parameters.AddWithValue("@password", SecurityHelper.GeneratePasswordHash(NewPerson.Password));
 				cmd.Parameters.AddWithValue("@email", NewPerson.Email);
 				cmd.Parameters.AddWithValue("@telephone", NewPerson.Phone);
 				cmd.Parameters.AddWithValue("@roleid", NewPerson.RoleID);
