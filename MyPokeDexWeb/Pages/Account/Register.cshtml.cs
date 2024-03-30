@@ -5,49 +5,55 @@ using Microsoft.Data.SqlClient;
 using MyPokedexBusiness;
 using MyPokeDexWeb.Model;
 
-
-
 namespace MyPokeDexWeb.Pages.Account
 {
     public class RegisterModel : PageModel
     {
-		[BindProperty]
-		public Person NewPerson { get; set; }
-		public void OnGet()
+        [BindProperty]
+        public Person NewPerson { get; set; }
+
+        public void OnGet()
         {
-          // NewPerson.FirstName = " Please enter your first name.";
+            // Initialize if needed
         }
-        public ActionResult OnPost()
+
+        public IActionResult OnPost()
         {
             if (ModelState.IsValid)
             {
-                //insert data into databse
-                //1. Create a database connection string
+                // Create database connection
+                string connectionString = SecurityHelper.GetDBConnectionString();
 
-               // string connString = "Server=(localdb)\\MSSQLLocalDB;Database=MyPokedex;Trusted_Connection=true;";
-                SqlConnection conn = new SqlConnection(SecurityHelper.GetDBConnectionString());
-                //2. Create a insert command
-                string cmdText = " INSERT INTO Person(FirstName, LastName, Email,Password, phone, RoleID, )" + 
-                    "Values (fFirstName, @lastName, @email, @password, @telephone, 2, @lastLogInTime, roleID)";
-                SqlCommand cmd = new SqlCommand(cmdText, conn);
-                cmd.Parameters.AddWithValue("@firstName", NewPerson.FirstName);
-				cmd.Parameters.AddWithValue("@lastName", NewPerson.LastName);
-				cmd.Parameters.AddWithValue("@password", SecurityHelper.GeneratePasswordHash(NewPerson.Password));
-				cmd.Parameters.AddWithValue("@email", NewPerson.Email);
-				cmd.Parameters.AddWithValue("@telephone", NewPerson.Phone);
-				cmd.Parameters.AddWithValue("@roleid", NewPerson.RoleID);
-				cmd.Parameters.AddWithValue("@lastLoginTime", DateTime.Now.ToString());
-                //3. open the database
-                conn.Open();
-                //4. execute the command
-                cmd.ExecuteNonQuery();
-				//5. Close the database
-                conn.Close();
+                // Open connection and insert data
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    // SQL insert command with parameters
+                    string cmdText = "INSERT INTO Person(FirstName, LastName, Email, Password, Phone, RoleID) " +
+                                     "VALUES (@firstName, @lastName, @email, @password, @telephone, @roleID)";
 
-                return RedirectToPage("login");
-			}
+                    using (SqlCommand cmd = new SqlCommand(cmdText, conn))
+                    {
+                        // Add parameters to SQL command
+                        cmd.Parameters.AddWithValue("@firstName", NewPerson.FirstName);
+                        cmd.Parameters.AddWithValue("@lastName", NewPerson.LastName);
+                        cmd.Parameters.AddWithValue("@password", SecurityHelper.GeneratePasswordHash(NewPerson.Password));
+                        cmd.Parameters.AddWithValue("@email", NewPerson.Email);
+                        cmd.Parameters.AddWithValue("@telephone", NewPerson.Phone);
+                        cmd.Parameters.AddWithValue("@roleID", 2); // Assuming a default role
+                        
+
+                        // Open connection and execute SQL command
+                        conn.Open();
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+
+                // Redirect to login page after successful registration
+                return RedirectToPage("Login");
+            }
+
+            // Return page if model state is not valid
             return Page();
-        
         }
     }
 }

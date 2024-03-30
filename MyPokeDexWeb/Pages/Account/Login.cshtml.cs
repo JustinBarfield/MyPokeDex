@@ -2,14 +2,15 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Data.SqlClient;
 using MyPokedexBusiness;
+using MyPokeDexWeb.Model;
 
 namespace MyPokeDexWeb.Pages
 {
     public class LoginModel : PageModel
     {
         [BindProperty]
-        public Login LoginUser { get; set; }
-        public void OnGet()
+		public Login LoginUser { get; set; }
+		public void OnGet()
         {
         }
 
@@ -45,7 +46,7 @@ namespace MyPokeDexWeb.Pages
                     return Page();
                 }
                 conn.Close();
-				
+				return Page();
             }
             else
             {
