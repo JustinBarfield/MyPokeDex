@@ -48,8 +48,8 @@ namespace MyPokeDexWeb.Pages.Account
                     }
                 }
 
-                // Redirect to login page after successful registration
-                return RedirectToPage("Login");
+                // Redirect to Profile page after successful registration
+                return RedirectToPage("Profile");
             }
 
             // Return page if model state is not valid
