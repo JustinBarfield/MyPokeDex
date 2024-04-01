@@ -24,7 +24,7 @@ namespace MyPokeDexWeb.Pages
                 conn.Open();
                 SqlDataReader reader = cmd.ExecuteReader();
                 if(reader.HasRows)
-                {
+                {  
                     reader.Read();
                     if (!reader.IsDBNull(0))
                     {
