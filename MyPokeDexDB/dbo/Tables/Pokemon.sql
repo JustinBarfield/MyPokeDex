@@ -6,6 +6,11 @@
     [State Total] INT          NOT NULL,
     [image URL]   VARCHAR (50) NOT NULL,
     [region]      TEXT         NOT NULL,
+    [Height]      TEXT         NULL,
+    [Weight]      TEXT         NULL,
+    [Audio]       VARCHAR (50) NULL,
     CONSTRAINT [PK_MyPokedex] PRIMARY KEY CLUSTERED ([PokemonID] ASC)
 );
+
+
 
