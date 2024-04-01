@@ -39,6 +39,10 @@ namespace MyPokeDexWeb.Pages
                             return Page();
                         }
                     }
+                    else
+                    {
+                        return Page();
+                    }
                 }
                 else
                 {
@@ -46,7 +50,6 @@ namespace MyPokeDexWeb.Pages
                     return Page();
                 }
                 conn.Close();
-				return Page();
             }
             else
             {
