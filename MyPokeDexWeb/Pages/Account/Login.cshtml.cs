@@ -25,7 +25,7 @@ namespace MyPokeDexWeb.Pages
                 }
                 else
                 {
-                    ModelState.AddModelError("Login Eror", "invalid credential, try again.");
+                    ModelState.AddModelError("Login Eror", "Invalid Credentials, Try Again.");
                     return Page();
                 }
                 //if credentials are valid
@@ -47,14 +47,16 @@ namespace MyPokeDexWeb.Pages
         {
             using (SqlConnection conn = new SqlConnection(SecurityHelper.GetDBConnectionString()))
             {
-                string cmdText = "SELECT Password,PersonID FROM  Person WHERE  Email=@email";
+                string cmdText = "SELECT Password, PersonID FROM Person WHERE Email=@email";
                 SqlCommand cmd = new SqlCommand(cmdText, conn);
+                // Add the @email parameter
+                cmd.Parameters.AddWithValue("@email", LoginUser.Email);
                 conn.Open();
                 SqlDataReader reader = cmd.ExecuteReader();
                 if (reader.HasRows)
                 {
                     reader.Read();
-                    if (!reader.IsDBNull(0))//the 0 is to selecct the correct index
+                    if (!reader.IsDBNull(0))//the 0 is to select the correct index
                     {
                         string passwordHash = reader.GetString(0);
                         if (SecurityHelper.VerifyPassword(LoginUser.Password, passwordHash))
@@ -62,9 +64,7 @@ namespace MyPokeDexWeb.Pages
                             //get the PersonID and use it to update the Person record
                             int personID = reader.GetInt32(1);
                             UpdatePersonLoginTime(personID);
-
                             return true;
-
                         }
                         else
                         {
@@ -83,6 +83,7 @@ namespace MyPokeDexWeb.Pages
                 conn.Close();
             }
         }
+
 
         private void UpdatePersonLoginTime(int personID)
         {

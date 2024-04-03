@@ -38,12 +38,7 @@ namespace MyPokeDexWeb.Pages.Account
                 // Create database connection
                 string connectionString = SecurityHelper.GetDBConnectionString();
 
-                // Open connection and insert data
-                using (SqlConnection conn = new SqlConnection(connectionString))
-                {
-                    // SQL insert command with parameters
-                   
-                }
+               
 
                 // Redirect to Profile page after successful registration
                 return RedirectToPage("Login");
