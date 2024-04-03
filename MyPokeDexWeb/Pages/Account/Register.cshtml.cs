@@ -21,6 +21,20 @@ namespace MyPokeDexWeb.Pages.Account
         {
             if (ModelState.IsValid)
             {
+                //Make sure the email is not already in the table
+
+                if (EmailDNE(NewPerson.Email))
+                {
+                    RegisterUser();
+                    return RedirectToPage("Login");
+
+                }
+                else
+                {
+                    ModelState.AddModelError("Register Error", "The email already exists. Try a different one");
+                    return Page();
+                }
+
                 // Create database connection
                 string connectionString = SecurityHelper.GetDBConnectionString();
 
@@ -28,24 +42,7 @@ namespace MyPokeDexWeb.Pages.Account
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     // SQL insert command with parameters
-                    string cmdText = "INSERT INTO Person(FirstName, LastName, Email, Password, Phone, RoleID) " +
-                                     "VALUES (@firstName, @lastName, @email, @password, @telephone, @roleID)";
-
-                    using (SqlCommand cmd = new SqlCommand(cmdText, conn))
-                    {
-                        // Add parameters to SQL command
-                        cmd.Parameters.AddWithValue("@firstName", NewPerson.FirstName);
-                        cmd.Parameters.AddWithValue("@lastName", NewPerson.LastName);
-                        cmd.Parameters.AddWithValue("@password", SecurityHelper.GeneratePasswordHash(NewPerson.Password));
-                        cmd.Parameters.AddWithValue("@email", NewPerson.Email);
-                        cmd.Parameters.AddWithValue("@telephone", NewPerson.Phone);
-                        cmd.Parameters.AddWithValue("@roleID", 2); // Assuming a default role
-                        
-
-                        // Open connection and execute SQL command
-                        conn.Open();
-                        cmd.ExecuteNonQuery();
-                    }
+                   
                 }
 
                 // Redirect to Profile page after successful registration
@@ -54,6 +51,51 @@ namespace MyPokeDexWeb.Pages.Account
 
             // Return page if model state is not valid
             return Page();
+        }
+
+        private void RegisterUser()
+        {
+            using(SqlConnection conn = new SqlConnection(SecurityHelper.GetDBConnectionString()))
+            {
+                string cmdText = "INSERT INTO Person(FirstName, LastName, Email, Password, Phone, RoleID) " +
+                                    "VALUES (@firstName, @lastName, @email, @password, @telephone, @roleID)";
+
+                SqlCommand cmd = new SqlCommand(cmdText, conn);
+                    // Add parameters to SQL command
+                    cmd.Parameters.AddWithValue("@firstName", NewPerson.FirstName);
+                    cmd.Parameters.AddWithValue("@lastName", NewPerson.LastName);
+                    cmd.Parameters.AddWithValue("@password", SecurityHelper.GeneratePasswordHash(NewPerson.Password));
+                    cmd.Parameters.AddWithValue("@email", NewPerson.Email);
+                    cmd.Parameters.AddWithValue("@telephone", NewPerson.Phone);
+                    cmd.Parameters.AddWithValue("@roleID", 2); // Assuming a default role
+
+
+                    // Open connection and execute SQL command
+                    conn.Open();
+                    cmd.ExecuteNonQuery();
+                
+            }
+        }
+
+        private bool EmailDNE(string email)
+        {
+            using (SqlConnection conn = new SqlConnection(SecurityHelper.GetDBConnectionString()))
+            {
+                string cmdText = "SELECT * FROM Person WHERE Email=@email"
+                SqlCommand cmd = new SqlCommand(cmdText, conn);
+                cmd.Parameters.AddWithValue("email", email);
+                conn.Open();
+                SqlDataReader reader = cmd.ExecuteReader();
+                if(reader.HasRows)
+                {
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
+
+            }
         }
     }
 }
