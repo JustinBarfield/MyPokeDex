@@ -15,9 +15,11 @@ INSERT [dbo].[Role] ([RoleID], [RoleName]) VALUES (2, N'Ethan')
 GO
 INSERT [dbo].[Role] ([RoleID], [RoleName]) VALUES (3, N'Luke')
 GO
-SET IDENTITY_INSERT [dbo].[User] ON 
+SET IDENTITY_INSERT [dbo].[Person] ON 
 GO
-INSERT [dbo].[User] ([UserID], [First Name], [Last Name], [Email], [Password], [Last Login Time], [RoleID]) VALUES (4, N'Justin', N'Barfield', N'BarfieldJ@jacks.sfasu.edu', N'12345', NULL, 1)
+INSERT [dbo].[Person] ([PersonID], [FirstName], [LastName], [Email], [Password], [RoleID], [Phone], [LastLoginTime]) VALUES (1016, N'Justin', N'Barfield', N'justinbarfield02@gmail.com', N'$2a$13$mo6ORhK7tNT4EK/JsKdknePUD0yKJTOyD7nbqSDfZFI6LKpNFdHpe', 2, N'8178569902', CAST(N'2024-04-03' AS Date))
 GO
-SET IDENTITY_INSERT [dbo].[User] OFF
+INSERT [dbo].[Person] ([PersonID], [FirstName], [LastName], [Email], [Password], [RoleID], [Phone], [LastLoginTime]) VALUES (1017, N'Tracey', N'Barfield', N'tracey@gmail.com', N'$2a$13$1VactTR55Uti1h3c7LL9jOvLz21pxFh8x/kwB297kqBp19gQJF0Ue', 2, N'8178569902', NULL)
+GO
+SET IDENTITY_INSERT [dbo].[Person] OFF
 GO
