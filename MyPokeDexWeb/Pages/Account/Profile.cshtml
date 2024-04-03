@@ -3,40 +3,39 @@
 @{
     ViewData["Title"] = "Profile page";
 }
-<style>
-    table, th, td {
-        border: 1px solid black;
-    }
-</style>
-<body>
-    <div class="text-center">
-        <h1 class="display-4">"username"'s PokeDex</h1>
-        <p>Using Border so we can see and trouble shoot, will remove later</p>
+<div class="row m-2">
+    <div class="col-2">
+        First Name:
     </div>
 
-    
+    <div class="col-2">
+        <lable asp-for="profile.FirstName"></lable>
+    </div>
+</div>
+<div class="row m-2">
+    <div class="col-2">
+        Last Name:
+    </div>
 
-    <table style="width:100%">
-        <tr>
-            <th>User Pokemon ID</th>
-            <th>User ID</th>
-            <th>Pokemon ID</th>
-            <th>Register Date</th>
-        </tr>
-        <tr>
-            <td>1</td>
-            <td>2</td>
-            <td>123</td>
-            <td>date and time</td>
-        </tr>
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-    </table>
+    <div class="col-2">
+        <lable asp-for="profile.LastName"></lable>
+    </div>
+</div>
+<div class="row m-2">
+    <div class="col-2">
+        Email:
+    </div>
+    <div class="col-2">
+        <lable asp-for="profile.Email"></lable>
+    </div>
+</div>
+<div class="row m-2">
+    <div class="col-2">
+        Phone:
+    </div>
 
-    
-
-</body>
+    <div class="col-2">
+        <lable asp-for="profile.Phone"></lable>
+    </div>
+</div>
 
