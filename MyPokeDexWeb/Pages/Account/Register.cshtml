@@ -3,11 +3,45 @@
 @{
 }
 
+
+
+<style>
+	body {
+		background-color: #f8f9fa;
+	}
+
+	.card {
+		border-radius: 1rem;
+		box-shadow: 0px 4px 20px rgba(0,0,0,0.1);
+	}
+
+	.card-body {
+		padding: 3rem;
+	}
+
+	.form-label {
+		font-weight: bold;
+	}
+
+	.btn-primary {
+		background-color: #ff385c;
+		border: none;
+	}
+
+	.btn-primary:hover {
+		background-color: #e61e4d;
+	}
+
+	.text-danger {
+		color: #dc3545;
+	}
+</style>
+
 <section>
 	<div class="container py-5 h-100">
 		<div class="row d-flex justify-content-center align-items-center h-100">
 			<div class="col-12 col-md-8 col-lg-6 col-xl-5">
-				<div class="card bg-light text-black" style="border-radius:1rem;">
+				<div class="card bg-light text-black">
 					<div class="card-body p-5 text-center">
 						<form method="post">
 							<div class="row text-black-danger" asp-validation-summary="All"></div>
@@ -56,9 +90,7 @@
 							</div>
 
 							<div class="row m-2">
-								<div class="col-2">
-									<label asp-for="NewPerson.Phone" class="form-label"></label>
-								</div>
+									<label asp-for="NewPerson.Phone" class="form-label"></label>								
 								<div class="col-10">
 									<input asp-for="NewPerson.Phone" type="tel" class="form-control" />
 									<span asp-validation-for="NewPerson.Phone" class="text-danger"></span>
@@ -77,4 +109,4 @@
 			</div>
 		</div>
 	</div>
-<</section>
+</section>

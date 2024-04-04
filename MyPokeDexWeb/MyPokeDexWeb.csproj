@@ -14,4 +14,8 @@
     <ProjectReference Include="..\MyPokedexBusiness\MyPokedexBusiness.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Graphics\" />
+  </ItemGroup>
+
 </Project>
