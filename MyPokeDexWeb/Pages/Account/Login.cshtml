@@ -10,6 +10,12 @@
 					<div class="card-body p-5 text-center">
 						<form method="post">
 							<div class = "row text-danger" asp-validation-summary="All"></div>
+
+							<div class="row m-2">
+								<h1>Sign In
+								</h1>
+							</div>
+
 							<div class="row m-2">
 								<div>
 									<label class="form-label" asp-for="LoginUser.Email"> Email</label>
@@ -23,6 +29,9 @@
 									<input  asp-for="LoginUser.Password" type="password" class="form-control" />
 									<span asp-validation-for="LoginUser.Password" class="text-danger"></span>
 								</div>
+							</div>
+							<div class="row m-2">
+								<a href="Register">Don't Have an account yet? Create one here.</a>
 							</div>
 							<div class="row m-2">
 								<div>

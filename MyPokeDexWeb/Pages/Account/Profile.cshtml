@@ -3,39 +3,78 @@
 @{
     ViewData["Title"] = "Profile page";
 }
-<div class="row m-2">
-    <div class="col-2">
-        First Name:
-    </div>
+  </div>
+<section>
+	<div class="container py-5 h-100">
+		<div class="row d-flex justify-content-center align-items-center h-100">
+			<div class="col-12 col-md-8 col-lg-6 col-xl-5">
+				<div class="card bg-light text-black" style="border-radius:1rem;">
+					<div class="card-body p-5 text-center">
+						<form method="post">
+							<div class="row text-black-danger" asp-validation-summary="All"></div>
+							<div class="row m-2">
+								<div class="col-2">
+									<label asp-for="profile.FirstName" class="form-label"></label>
+								</div>
+								<div class="col-10">
 
-    <div class="col-2">
-        <lable asp-for="profile.FirstName"></lable>
-    </div>
-</div>
-<div class="row m-2">
-    <div class="col-2">
-        Last Name:
-    </div>
+									<span asp-validation-for="profile.FirstName" class="text-danger"></span>
+								</div>
 
-    <div class="col-2">
-        <lable asp-for="profile.LastName"></lable>
-    </div>
-</div>
-<div class="row m-2">
-    <div class="col-2">
-        Email:
-    </div>
-    <div class="col-2">
-        <lable asp-for="profile.Email"></lable>
-    </div>
-</div>
-<div class="row m-2">
-    <div class="col-2">
-        Phone:
-    </div>
+							</div>
 
-    <div class="col-2">
-        <lable asp-for="profile.Phone"></lable>
-    </div>
-</div>
+							<div class="row m-2">
+								<div class="col-2">
+									<label asp-for="profile.LastName" class="form-label"></label>
+								</div>
+								<div class="col-10">
+
+									<span asp-validation-for="profile.LastName" class="text-danger"></span>
+								</div>
+
+							</div>
+
+							<div class="row m-2">
+								<div class="col-2">
+									<label asp-for="profile.Email" class="form-label"></label>
+								</div>
+								<div class="col-10">
+
+									<span asp-validation-for="profile.Email" class="text-danger"></span>
+								</div>
+
+							</div>
+
+							<div class="row m-2">
+								<div class="col-2">
+									<label asp-for="profile.Password" class="form-label"></label>
+								</div>
+								<div class="col-10">
+
+									<span asp-validation-for="profile.Password" class="text-danger"></span>
+								</div>
+
+							</div>
+
+							<div class="row m-2">
+								<div class="col-2">
+									<label asp-for="profile.Phone" class="form-label"></label>
+								</div>
+								<div class="col-10">
+
+									<span asp-validation-for="profile.Phone" class="text-danger"></span>
+								</div>
+
+							</div>
+
+							
+						</form>
+					</div>
+				</div>
+				</div>
+			</div>
+		</div>
+		<
+</section>
+	
 

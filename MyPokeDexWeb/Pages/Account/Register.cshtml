@@ -45,6 +45,11 @@
 					<div class="card-body p-5 text-center">
 						<form method="post">
 							<div class="row text-black-danger" asp-validation-summary="All"></div>
+
+							<div class="row m-2">
+								<h1>Register</h1>
+							</div>
+
 							<div class="row m-2">
 								<div class="col-2">
 									<label asp-for="NewPerson.FirstName" class="form-label"></label>
@@ -96,6 +101,9 @@
 									<span asp-validation-for="NewPerson.Phone" class="text-danger"></span>
 								</div>
 
+							</div>
+							<div class="row m-2">
+								<a href="Login">Already have an account? Sign in here.</a>
 							</div>
 
 							<div class="row m-2">
