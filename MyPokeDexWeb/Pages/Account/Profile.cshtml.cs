@@ -10,6 +10,7 @@ namespace MyPokeDexWeb.Pages.Account
         public UserProfile profile { get; set; }
         public void OnGet()
         {
+
         }
     }
 }
