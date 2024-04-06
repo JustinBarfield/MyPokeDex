@@ -2,6 +2,57 @@
 @model MyPokeDexWeb.Pages.LoginModel
 @{
 }
+
+
+<style>
+	body {
+		background-color: #f8f9fa;
+	}
+
+	.card {
+		border-radius: 1rem;
+		box-shadow: 0px 4px 20px rgba(0,0,0,0.1);
+	}
+
+	.card-body {
+		padding: 3rem;
+	}
+
+	.form-label {
+		font-weight: bold;
+	}
+
+	.btn-primary {
+		background-color: #ff385c;
+		border: none;
+	}
+
+		.btn-primary:hover {
+			background-color: #e61e4d;
+		}
+
+	.text-danger {
+		color: #dc3545;
+	}
+
+	.row {
+		display: flex;
+		align-items: center;
+	}
+
+	
+
+	.col-10 {
+
+		flex: 1;
+		text-align: left;
+		margin-right: 10px;
+	}
+</style>
+
+
+
+
 <section>
 	<div class="container py-5 h-100">
 		<div class="row d-flex justify-content-center align-items-center h-100">
@@ -17,14 +68,14 @@
 							</div>
 
 							<div class="row m-2">
-								<div>
+								<div class="col-10">
 									<label class="form-label" asp-for="LoginUser.Email"> Email</label>
 									<input asp-for="LoginUser.Email" type="email" class="form-control" />
 									<span asp-validation-for="LoginUser.Email" class="text-danger"></span>
 								</div>
 							</div>
 							<div class="row m-2">
-								<div>
+								<div class="col-10">
 									<label asp-for="LoginUser.Password" class="form-label">Password</label>
 									<input  asp-for="LoginUser.Password" type="password" class="form-control" />
 									<span asp-validation-for="LoginUser.Password" class="text-danger"></span>
