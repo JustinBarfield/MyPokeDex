@@ -12,7 +12,8 @@ namespace MyPokeDexWeb.Model
         [Display(Name = "Last Name ")]
         public string LastName { get; set; }
         [Required(ErrorMessage = "Password is required")]
-        public string Password { get; set; }
+		[Display(Name = "Password ")]
+		public string Password { get; set; }
         [Required(ErrorMessage = "Email is required")]
         public string Email { get; set; }
         [Required(ErrorMessage = "Phone number is required")]

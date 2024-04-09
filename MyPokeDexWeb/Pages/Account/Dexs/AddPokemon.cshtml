@@ -1,0 +1,127 @@
+﻿@page
+@model MyPokeDexWeb.Pages.Account.Dexs.AddPokemonModel
+@{
+}
+<form method="post" class=" form-group">
+	<section>
+		<div class="container py-5 h-100">
+			<div class="row d-flex justify-content-center align-items-center h-100">
+				<div class="col-12 col-md-8 col-lg-6 col-xl-5">
+					<div class="card bg-light text-black">
+						<div class="card-body p-5 text-center">
+							<form method="post">
+								<div class="row text-black-danger" asp-validation-summary="All"></div>
+
+								<div class="row m-2">
+									<h1>Add Pokemon</h1>
+								</div>
+
+								<div class="row m-2">
+									<div class="col-2">
+										<label asp-for="NewPokemon.PokemonID" class="form-label"></label>
+									</div>
+									<div class="col-10">
+										<input asp-for="NewPokemon.PokemonID" type="text" class="form-control" />
+										<span asp-validation-for="NewPokemon.PokemonID" class="text-danger"></span>
+									</div>
+
+								</div>
+
+								<div class="row m-2">
+									<div class="col-2">
+										<label asp-for="NewPokemon.Name" class="form-label"></label>
+									</div>
+									<div class="col-10">
+										<input asp-for="NewPokemon.Name" type="text" class="form-control" />
+										<span asp-validation-for="NewPokemon.Name" class="text-danger"></span>
+									</div>
+
+								</div>
+
+								<div class="row m-2">
+									<div class="col-2">
+										<label asp-for="NewPokemon.DexNumber" class="form-label"></label>
+									</div>
+									<div class="col-10">
+										<input asp-for="NewPokemon.DexNumber" type="text" class="form-control" />
+										<span asp-validation-for="NewPokemon.DexNumber" class="text-danger"></span>
+									</div>
+
+								</div>
+
+								<div class="row m-2">
+									<div class="col-2">
+										<label asp-for="NewPokemon.Type " class="form-label"> </label>
+									</div>
+									<div class="col-10">
+										<select asp-for="NewPokemon.Type" asp-items="@Model.Type">  </select>
+										<span asp-validation-for="NewPokemon.Type" class="text-danger"></span>
+									</div>
+
+								</div>
+
+								<div class="row m-2">
+									<div class="col-2">
+										<label asp-for="NewPokemon.StateTotal" class="form-label"></label>
+									</div>
+									<div class="col-10">
+										<input asp-for="NewPokemon.StateTotal" type="text" class="form-control" />
+										<span asp-validation-for="NewPokemon.StateTotal" class="text-danger"></span>
+									</div>
+								</div>
+
+								<div class="row m-2">
+									<div class="col-2">
+										<label asp-for="NewPokemon.Region" class="form-label"></label>
+									</div>
+									<div class="col-10">
+										<select asp-for="NewPokemon.Region" asp-items="@Model.Region">  </select>
+										<span asp-validation-for="NewPokemon.Region" class="text-danger"></span>
+									</div>
+								</div>
+
+								<div class="row m-2">
+									<div class="col-2">
+										<label asp-for="NewPokemon.Height" class="form-label"></label>
+									</div>
+									<div class="col-10">
+										<input asp-for="NewPokemon.Height" type="text" class="form-control" />
+										<span asp-validation-for="NewPokemon.Height" class="text-danger"></span>
+									</div>
+								</div>
+
+								<div class="row m-2">
+									<div class="col-2">
+										<label asp-for="NewPokemon.Weight" class="form-label"></label>
+									</div>
+									<div class="col-10">
+										<input asp-for="NewPokemon.Weight" type="text" class="form-control" />
+										<span asp-validation-for="NewPokemon.Weight" class="text-danger"></span>
+									</div>
+								</div>
+
+								<div class="row m-2">
+									<div class="col-2">
+										<label asp-for="NewPokemon.Audio" class="form-label"></label>
+									</div>
+									<div class="col-10">
+										<input asp-for="NewPokemon.Audio" type="text" class="form-control" />
+										<span asp-validation-for="NewPokemon.Audio" class="text-danger"></span>
+									</div>
+								</div>
+
+								
+
+								<div class="row m-2 justify-content-center">
+									<div class="col-6">
+										<button id="btnLogin" class="btn btn-primary btn-block">Add Pokemon</button>
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</form>

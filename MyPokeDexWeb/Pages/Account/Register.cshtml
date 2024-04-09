@@ -21,13 +21,12 @@
 
 	.form-label {
 		
-		font-weight: bold;
-		
 	}
 
 	.btn-primary {
-		background-color: #ff385c;
-		border: none;
+		color: #fff;
+		background-color: #1b6ec2;
+		border-color: #1861ac;
 	}
 
 	.btn-primary:hover {
@@ -35,24 +34,8 @@
 	}
 
 	.text-danger {
-		color: #dc3545;
+		color: blue;
 	}
-
-	.row {
-		display: flex;
-		align-items: center;
-	}
-
-	.col-2 {
-		flex: 0 0 auto; 
-		text-align: right; 
-		margin-right: 10px; 
-	}
-
-	.col-10 {
-		flex: 1; 
-	}
-	
 </style>
 
 <section>
@@ -103,7 +86,7 @@
 
 							<div class="row m-2">
 								<div class="col-2">
-									<label asp-for="NewPerson.Password" class="form-label"></label>
+									<label asp-for="NewPerson.Password " class="form-label"> </label>
 								</div>
 								<div class="col-10">
 									<input asp-for="NewPerson.Password" type="password" class="form-control" />
@@ -120,6 +103,7 @@
 									<input asp-for="NewPerson.Phone" type="tel" class="form-control" />
 									<span asp-validation-for="NewPerson.Phone" class="text-danger"></span>
 								</div>
+							</div>
 
 							</div>
 							<div class="row m-2">

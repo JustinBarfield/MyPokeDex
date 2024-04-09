@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyPokeDexWeb", "MyPokeDexWe
 EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "MyPokeDexDB", "MyPokeDexDB\MyPokeDexDB.sqlproj", "{A97A821D-770C-4D30-855C-506B02E9E852}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyPokedexBusiness", "MyPokedexBusiness\MyPokedexBusiness.csproj", "{F5E36CAE-52C8-4300-9C14-8AEF6A3A875D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyPokedexBusiness", "MyPokedexBusiness\MyPokedexBusiness.csproj", "{F5E36CAE-52C8-4300-9C14-8AEF6A3A875D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
