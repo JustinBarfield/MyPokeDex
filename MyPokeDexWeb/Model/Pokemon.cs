@@ -18,7 +18,7 @@ namespace MyPokeDexWeb.Model
         [Display(Name = "State Total")]
         public int StateTotal { get; set; }
         public string ImageURL { get; set; }
-        [Required]
+        
         [Display(Name = "Region")]
         public string Region { get; set; }
 

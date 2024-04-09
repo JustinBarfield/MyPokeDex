@@ -24,12 +24,33 @@ namespace MyPokeDexWeb.Pages.Account.Dexs
 
         }
 
-		public void OnPost()
+		public IActionResult OnPost()
 		{
-			using(SqlConnection conn = new SqlConnection(SecurityHelper.GetDBConnectionString()))
+			if (ModelState.IsValid)
 			{
-				string cmdText = "INSERT INTO  Pokemon(PokemonID, [Dex Number], Name, Type, [State Total], [image URL], Region, Height, Weight)" +
-					"VALUES (";
+				using (SqlConnection conn = new SqlConnection(SecurityHelper.GetDBConnectionString()))
+				{
+					string cmdText = "INSERT INTO  Pokemon(PokemonID, [Dex Number], Name, Type, [State Total], [image URL], Region, Height, Weight)" +
+						"VALUES (@pokemonID, @dexNumber, @name, @type, @stateTotal, @imageURL, @region, @height, @weight)";
+					SqlCommand cmd = new SqlCommand(cmdText, conn);
+					cmd.Parameters.AddWithValue("@pokemonID", NewPokemon.PokemonID);
+					cmd.Parameters.AddWithValue("@dexNUmber", NewPokemon.DexNumber);
+					cmd.Parameters.AddWithValue("@name", NewPokemon.Name);
+					cmd.Parameters.AddWithValue("@type", NewPokemon.Type);
+					cmd.Parameters.AddWithValue("@stateTotal", NewPokemon.StateTotal);
+					cmd.Parameters.AddWithValue("@imageURL", NewPokemon.ImageURL);
+					cmd.Parameters.AddWithValue("@region", NewPokemon.Region);
+					cmd.Parameters.AddWithValue("@height", NewPokemon.Height);
+					cmd.Parameters.AddWithValue("@weight", NewPokemon.Weight);
+
+					conn.Open();
+					cmd.ExecuteNonQuery();
+					return RedirectToPage("ViewDexItems");
+				}
+			}
+			else{
+				return Page();
+
 			}
 		}
 
