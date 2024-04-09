@@ -6,36 +6,50 @@
 
 
 <style>
-	body {
-		background-color: #f8f9fa;
-	}
+    body {
+        background-color: #f8f9fa;
+    }
 
-	.card {
-		border-radius: 1rem;
-		box-shadow: 0px 4px 20px rgba(0,0,0,0.1);
-	}
+    .card {
+        border-radius: 1rem;
+        box-shadow: 0px 4px 20px rgba(0,0,0,0.1);
+    }
 
-	.card-body {
-		padding: 3rem;
-	}
+    .card-body {
+        padding: 3rem;
+    }
 
-	.form-label {
-		
-	}
+    .form-label {
+        font-weight: bold;
+    }
 
-	.btn-primary {
-		color: #fff;
-		background-color: #1b6ec2;
-		border-color: #1861ac;
-	}
+    .btn-primary {
+        background-color: blue;
+        border: none;
+    }
 
-	.btn-primary:hover {
-		background-color: #e61e4d;
-	}
+        .btn-primary:hover {
+            background-color: blue;
+        }
 
-	.text-danger {
-		color: blue;
-	}
+    .text-danger {
+        color: #dc3545;
+    }
+
+    .row {
+        display: flex;
+        align-items: center;
+    }
+
+    .col-2 {
+        flex: 0 0 auto;
+        text-align: right;
+        margin-right: 10px;
+    }
+
+    .col-10 {
+        flex: 1;
+    }
 </style>
 
 <section>
@@ -58,7 +72,7 @@
                                                     </div>
 
                                                     <div class="row m-2">
-                                                        <div class="col-2">
+                                                        <div class="col-10">
                                                             <label asp-for="NewPerson.FirstName" class="form-label"></label>
                                                         </div>
                                                         <div class="col-10">
@@ -78,7 +92,7 @@
                                                     </div>
 
                                                     <div class="row m-2">
-                                                        <div class="col-2">
+                                                        <div class="col-10">
                                                             <label asp-for="NewPerson.Email" class="form-label"></label>
                                                         </div>
                                                         <div class="col-10">
@@ -88,7 +102,7 @@
                                                     </div>
 
                                                     <div class="row m-2">
-                                                        <div class="col-2">
+                                                        <div class="col-10">
                                                             <label asp-for="NewPerson.Password " class="form-label"> </label>
                                                         </div>
                                                         <div class="col-10">
@@ -98,7 +112,7 @@
                                                     </div>
 
                                                     <div class="row m-2">
-                                                        <div class="col-2">
+                                                        <div class="col-10">
                                                             <label asp-for="NewPerson.Phone" class="form-label"></label>
                                                         </div>
                                                         <div class="col-10">
@@ -112,11 +126,11 @@
                                                     </div>
 
                                                     <div class="row m-2">
-                                                        <div class="col-2">
+                                                        <div class="col-10">
                                                             <button id="btnLogin" class="btn btn-primary">Register </button>
                                                         </div>
                                                     </div>
-                                                </form> <!-- Closing form tag -->
+                                                </form> 
                                             </div>
                                         </div>
                                     </div>
