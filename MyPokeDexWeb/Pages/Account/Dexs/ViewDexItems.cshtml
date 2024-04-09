@@ -2,3 +2,137 @@
 @model MyPokeDexWeb.Pages.Account.Dexs.ViewDexItemsModel
 @{
 }
+<form method="post" class="form-group">
+	<div class="row m-2">
+		<div class="col-2">
+			<label class="form-label">Region</label>
+		</div>
+		<div class="col-8">
+			<select asp-for="SelectedRegionID" asp-items="Model.Region"></select>
+		</div>
+		<div class="col-2">
+			<button class="btn btn-primary" id="btnView">Display</button>
+		</div>
+	</div>
+
+	@foreach (var pokemon in Model.PokemonItems)
+	{
+		<div class="row m-2 border">
+			<div class="row m-2">
+				<div class="col-2">
+					<label class="form-label" asp-for="@pokemon.PokemonID"></label><!-- gets the item display name-->
+				</div>
+				<div class="col-10">
+					<label class="form-label">@pokemon.PokemonID</label><!-- gets the value stored-->
+				</div>
+			</div>
+		</div>
+
+		<div class="row m-2 border">
+			<div class="row m-2">
+				<div class="col-2">
+					<label class="form-label" asp-for="@pokemon.DexNumber"></label><!-- gets the item display name-->
+				</div>
+				<div class="col-10">
+					<label class="form-label">@pokemon.DexNumber</label><!-- gets the value stored-->
+				</div>
+			</div>
+		</div>
+
+		<div class="row m-2 border">
+			<div class="row m-2">
+				<div class="col-2">
+					<label class="form-label" asp-for="@pokemon.Name"></label><!-- gets the item display name-->
+				</div>
+				<div class="col-10">
+					<label class="form-label">@pokemon.Name</label><!-- gets the value stored-->
+				</div>
+			</div>
+		</div>
+
+
+		<div class="row m-2 border">
+			<div class="row m-2">
+				<div class="col-2">
+					<label class="form-label" asp-for="@pokemon.Type"></label><!-- gets the item display name-->
+				</div>
+				<div class="col-10">
+					<label class="form-label">@pokemon.Type</label><!-- gets the value stored-->
+				</div>
+			</div>
+		</div>
+
+
+		<div class="row m-2 border">
+			<div class="row m-2">
+				<div class="col-2">
+					<label class="form-label" asp-for="@pokemon.StateTotal"></label><!-- gets the item display name-->
+				</div>
+				<div class="col-10">
+					<label class="form-label">@pokemon.StateTotal</label><!-- gets the value stored-->
+				</div>
+			</div>
+		</div>
+
+
+		<div class="row m-2 border">
+			<div class="row m-2">
+				<div class="col-2">
+					<label class="form-label" asp-for="@pokemon.ImageURL"></label><!-- gets the item display name-->
+				</div>
+				<div class="col-10">
+					<label class="form-label">@pokemon.ImageURL</label><!-- gets the value stored-->
+				</div>
+			</div>
+		</div>
+
+
+		<div class="row m-2 border">
+			<div class="row m-2">
+				<div class="col-2">
+					<label class="form-label" asp-for="@pokemon.Region"></label><!-- gets the item display name-->
+				</div>
+				<div class="col-10">
+					<label class="form-label">@pokemon.Region</label><!-- gets the value stored-->
+				</div>
+			</div>
+		</div>
+
+
+		<div class="row m-2 border">
+			<div class="row m-2">
+				<div class="col-2">
+					<label class="form-label" asp-for="@pokemon.Height"></label><!-- gets the item display name-->
+				</div>
+				<div class="col-10">
+					<label class="form-label">@pokemon.Height</label><!-- gets the value stored-->
+				</div>
+			</div>
+		</div>
+
+
+		<div class="row m-2 border">
+			<div class="row m-2">
+				<div class="col-2">
+					<label class="form-label" asp-for="@pokemon.Weight"></label><!-- gets the item display name-->
+				</div>
+				<div class="col-10">
+					<label class="form-label">@pokemon.Weight</label><!-- gets the value stored-->
+				</div>
+			</div>
+		</div>
+	
+	
+		<div class="row m-2">
+			<div class="col-2">
+				<a asp-page="EditDexItems" asp-route-id="@pokemon.PokemonID" class="btn btn-primary">Edit</a>
+			</div>
+		</div>
+
+	
+	
+	}
+
+
+
+</form>

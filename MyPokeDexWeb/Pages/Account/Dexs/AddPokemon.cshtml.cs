@@ -11,7 +11,7 @@ namespace MyPokeDexWeb.Pages.Account.Dexs
     public class AddPokemonModel : PageModel
     {
        
-        public Pokemon NewPokemon {  get; set; } = new Pokemon();
+        public PokemonItem NewPokemon {  get; set; } = new PokemonItem();
 
         public List<SelectListItem> Region { get; set; } = new List<SelectListItem>();
 		public List<SelectListItem> Type { get; set; } = new List<SelectListItem>();
