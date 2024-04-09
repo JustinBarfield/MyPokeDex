@@ -28,8 +28,8 @@ namespace MyPokeDexWeb.Pages.Account.Dexs
 		{
 			using(SqlConnection conn = new SqlConnection(SecurityHelper.GetDBConnectionString()))
 			{
-				string cmdText = "INSERT INTO  Pokemon(PokemonID, [Dex Number], Name, Type, [State Total], [image URL], Region, Height, Weight)" + 
-					"VALUES ("
+				string cmdText = "INSERT INTO  Pokemon(PokemonID, [Dex Number], Name, Type, [State Total], [image URL], Region, Height, Weight)" +
+					"VALUES (";
 			}
 		}
 
