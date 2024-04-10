@@ -13,7 +13,7 @@ namespace MyPokeDexWeb.Pages.Account.Dexs
        
         public PokemonItem NewPokemon {  get; set; } = new PokemonItem();
 
-        public List<SelectListItem> Region { get; set; } = new List<SelectListItem>();
+        public List<SelectListItem> RegionID { get; set; } = new List<SelectListItem>();
 		public List<SelectListItem> Type { get; set; } = new List<SelectListItem>();
 
 		public void OnGet()
@@ -30,7 +30,7 @@ namespace MyPokeDexWeb.Pages.Account.Dexs
 			{
 				using (SqlConnection conn = new SqlConnection(SecurityHelper.GetDBConnectionString()))
 				{
-					string cmdText = "INSERT INTO  Pokemon(PokemonID, [Dex Number], Name, Type, [State Total], [image URL], Region, Height, Weight)" +
+					string cmdText = "INSERT INTO  Pokemon(PokemonID, [Dex Number], Name, Type, [State Total], [image URL], RegionID, Height, Weight)" +
 						"VALUES (@pokemonID, @dexNumber, @name, @type, @stateTotal, @imageURL, @region, @height, @weight)";
 					SqlCommand cmd = new SqlCommand(cmdText, conn);
 					cmd.Parameters.AddWithValue("@pokemonID", NewPokemon.PokemonID);

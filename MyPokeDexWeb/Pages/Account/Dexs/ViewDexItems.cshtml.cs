@@ -13,7 +13,7 @@ namespace MyPokeDexWeb.Pages.Account.Dexs
     {
         
 
-        public List<SelectListItem> Region { get; set; } = new List<SelectListItem>();
+        public List<SelectListItem> RegionID { get; set; } = new List<SelectListItem>();
 
         public List<PokemonItem> PokemonItems { get; set; } = new List<PokemonItem>();
 
@@ -26,7 +26,45 @@ namespace MyPokeDexWeb.Pages.Account.Dexs
 
         }
 
-        private void PopulateTypeDDL()
+		public void OnPost()
+		{
+			PopulatDexItem(SelectedRegionID);
+		}
+
+		private void PopulatDexItem(int id)
+		{
+			using (SqlConnection conn = new SqlConnection(SecurityHelper.GetDBConnectionString()))
+			{
+				string cmdText = " SELECT PokemonID, [Dex Number], Type, [State Total], [image URL], Region, Height, Weight, Audio FROM Pokemon WHERE RegionID = @regionID";
+				SqlCommand cmd = new SqlCommand(cmdText, conn);
+				cmd.Parameters.AddWithValue("@RegionID", id);
+				conn.Open();
+				SqlDataReader reader = cmd.ExecuteReader();
+				if (reader.HasRows)
+				{
+
+					while (reader.Read())
+					{
+						var item = new PokemonItem();
+						item.PokemonID = reader.GetInt32(0);
+						item.DexNumber = reader.GetInt32(1);
+						item.Type = reader.GetString(2);
+						item.StateTotal = reader.GetInt32(3);
+						item.ImageURL = reader.GetString(4);
+						item.RegionID = reader.GetString(5);
+						item.Height= reader.GetString(6);
+						item.Weight = reader.GetString(7);
+						item.Audio = reader.GetString(8);
+
+						PokemonItems.Add(item);
+					}
+
+				}
+
+			}
+		}
+
+		private void PopulateTypeDDL()
         {
            
         }
@@ -47,7 +85,7 @@ namespace MyPokeDexWeb.Pages.Account.Dexs
 						var region = new SelectListItem();
 						region.Value = reader.GetInt32(0).ToString();
 						region.Text = reader.GetString(1);
-						Region.Add(region);
+						RegionID.Add(region);
 					}
 
 				}

@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 namespace MyPokeDexWeb.Model
 {
-    public class PokemonItem
+    public class Pokemon
     {
         public int PokemonID { get; set; }
         [Required]

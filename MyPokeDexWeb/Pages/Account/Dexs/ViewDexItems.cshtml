@@ -8,7 +8,7 @@
 			<label class="form-label">Region</label>
 		</div>
 		<div class="col-8">
-			<select asp-for="SelectedRegionID" asp-items="Model.Region"></select>
+			<select asp-for="SelectedRegionID" asp-items="Model.RegionID"></select>
 		</div>
 		<div class="col-2">
 			<button class="btn btn-primary" id="btnView">Display</button>
@@ -90,10 +90,10 @@
 		<div class="row m-2 border">
 			<div class="row m-2">
 				<div class="col-2">
-					<label class="form-label" asp-for="@pokemon.Region"></label><!-- gets the item display name-->
+					<label class="form-label" asp-for="@pokemon.RegionID"></label><!-- gets the item display name-->
 				</div>
 				<div class="col-10">
-					<label class="form-label">@pokemon.Region</label><!-- gets the value stored-->
+					<label class="form-label">@pokemon.RegionID</label><!-- gets the value stored-->
 				</div>
 			</div>
 		</div>
