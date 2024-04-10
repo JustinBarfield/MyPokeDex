@@ -30,8 +30,8 @@ namespace MyPokeDexWeb.Pages.Account.Dexs
 			{
 				using (SqlConnection conn = new SqlConnection(SecurityHelper.GetDBConnectionString()))
 				{
-					string cmdText = "INSERT INTO  Pokemon(PokemonID, [Dex Number], Name, Type, [State Total], [image URL], RegionID, Height, Weight)" +
-						"VALUES (@pokemonID, @dexNumber, @name, @type, @stateTotal, @imageURL, @region, @height, @weight)";
+					string cmdText = "INSERT INTO  Pokemon(PokemonID, [Dex Number], Name, TypeID, [State Total], [image URL], RegionID, Height, Weight, Audio)" +
+						"VALUES (@pokemonID, @dexNumber, @name, @type, @stateTotal, @imageURL, @region, @height, @weight,@audio)";
 					SqlCommand cmd = new SqlCommand(cmdText, conn);
 					cmd.Parameters.AddWithValue("@pokemonID", NewPokemon.PokemonID);
 					cmd.Parameters.AddWithValue("@dexNUmber", NewPokemon.DexNumber);
@@ -42,6 +42,7 @@ namespace MyPokeDexWeb.Pages.Account.Dexs
 					cmd.Parameters.AddWithValue("@region", NewPokemon.RegionID);
 					cmd.Parameters.AddWithValue("@height", NewPokemon.Height);
 					cmd.Parameters.AddWithValue("@weight", NewPokemon.Weight);
+					cmd.Parameters.AddWithValue("@audio", NewPokemon.Audio);
 
 					conn.Open();
 					cmd.ExecuteNonQuery();

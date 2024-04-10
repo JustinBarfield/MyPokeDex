@@ -2,3 +2,136 @@
 @model MyPokeDexWeb.Pages.Account.Dexs.EditPokemonItemModel
 @{
 }
+<form method="post" class=" form-group">
+    <section>
+        <div class="container py-5 h-100">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+                    <div class="card bg-light text-black">
+                        <div class="card-body p-5 text-center">
+                            <form method="post">
+                                <div class="row text-black-danger" asp-validation-summary="All"></div>
+
+                                <div class="row m-2">
+                                    <h1>Edit Pokemon</h1>
+                                </div>
+
+                                <div class="row m-2">
+                                    <div class="col-2">
+                                        <label asp-for="Pokemon.PokemonID" class="form-label"></label>
+                                    </div>
+                                    <div class="col-10">
+                                        <input asp-for="Pokemon.PokemonID" type="text" class="form-control" />
+                                        <span asp-validation-for="Pokemon.PokemonID" class="text-danger"></span>
+                                    </div>
+
+                                </div>
+
+                                <div class="row m-2">
+                                    <div class="col-2">
+                                        <label asp-for="Pokemon.Name" class="form-label"></label>
+                                    </div>
+                                    <div class="col-10">
+                                        <input asp-for="Pokemon.Name" type="text" class="form-control" />
+                                        <span asp-validation-for="Pokemon.Name" class="text-danger"></span>
+                                    </div>
+
+                                </div>
+
+                                <div class="row m-2">
+                                    <div class="col-2">
+                                        <label asp-for="Pokemon.DexNumber" class="form-label"></label>
+                                    </div>
+                                    <div class="col-10">
+                                        <input asp-for="Pokemon.DexNumber" type="text" class="form-control" />
+                                        <span asp-validation-for="Pokemon.DexNumber" class="text-danger"></span>
+                                    </div>
+
+                                </div>
+
+                                <div class="row m-2">
+                                    <div class="col-2">
+                                        <label asp-for="Pokemon.TypeID " class="form-label"> </label>
+                                    </div>
+                                    <div class="col-10">
+                                        <select asp-for="Pokemon.TypeID" asp-items="@Model.Type">  </select>
+                                        <span asp-validation-for="Pokemon.TypeID" class="text-danger"></span>
+                                    </div>
+
+                                </div>
+
+                                <div class="row m-2">
+                                    <div class="col-2">
+                                        <label asp-for="Pokemon.StateTotal" class="form-label"></label>
+                                    </div>
+                                    <div class="col-10">
+                                        <input asp-for="Pokemon.StateTotal" type="text" class="form-control" />
+                                        <span asp-validation-for="Pokemon.StateTotal" class="text-danger"></span>
+                                    </div>
+                                </div>
+
+                                <div class="row m-2">
+                                    <div class="col-2">
+                                        <label asp-for="Pokemon.RegionID" class="form-label"></label>
+                                    </div>
+                                    <div class="col-10">
+                                        <select asp-for="Pokemon.RegionID" asp-items="@Model.RegionID">  </select>
+                                        <span asp-validation-for="Pokemon.RegionID" class="text-danger"></span>
+                                    </div>
+                                </div>
+
+                                <div class="row m-2">
+                                    <div class="col-2">
+                                        <label asp-for="Pokemon.Height" class="form-label"></label>
+                                    </div>
+                                    <div class="col-10">
+                                        <input asp-for="Pokemon.Height" type="text" class="form-control" />
+                                        <span asp-validation-for="Pokemon.Height" class="text-danger"></span>
+                                    </div>
+                                </div>
+
+                                <div class="row m-2">
+                                    <div class="col-2">
+                                        <label asp-for="Pokemon.Weight" class="form-label"></label>
+                                    </div>
+                                    <div class="col-10">
+                                        <input asp-for="Pokemon.Weight" type="text" class="form-control" />
+                                        <span asp-validation-for="Pokemon.Weight" class="text-danger"></span>
+                                    </div>
+                                </div>
+
+                                <div class="row m-2">
+                                    <div class="col-2">
+                                        <label asp-for="Pokemon.Audio" class="form-label"></label>
+                                    </div>
+                                    <div class="col-10">
+                                        <input asp-for="Pokemon.Audio" type="text" class="form-control" />
+                                        <span asp-validation-for="Pokemon.Audio" class="text-danger"></span>
+                                    </div>
+                                </div>
+
+                                <div class="row m-2">
+                                    <div class="col-2">
+                                        <label asp-for="Pokemon.ImageURL" class="form-label"></label>
+                                    </div>
+                                    <div class="col-10">
+                                        <input asp-for="Pokemon.ImageURL" type="text" class="form-control" />
+                                        <span asp-validation-for="Pokemon.ImageURL" class="text-danger"></span>
+                                    </div>
+                                </div>
+
+
+
+                                <div class="row m-2 justify-content-center">
+                                    <div class="col-6">
+                                        <button id="btnLogin" class="btn btn-primary btn-block">Update Pokemon</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</form>
