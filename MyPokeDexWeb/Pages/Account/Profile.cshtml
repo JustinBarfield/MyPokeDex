@@ -1,7 +1,17 @@
 ﻿@page
 @model MyPokeDexWeb.Pages.Account.ProfileModel
 @{
-    ViewData["Title"] = "Profile page";
+	ViewData["Title"] = "Profile page";
+	if (HttpContext.User.Identity.IsAuthenticated)
+	{
+		Layout = "_Layout-Authenticated";
+	}
+	else
+	{
+		Layout = " _Layout";
+	}
+
+	//Layout = HttpContext.User.Identity.IsAuthenticated ? "_LayoutAuthenticated"
 }
   </div>
 <section>

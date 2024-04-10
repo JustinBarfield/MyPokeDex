@@ -1,3 +1,6 @@
+using System.Security.Claims;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Data.SqlClient;
@@ -47,7 +50,8 @@ namespace MyPokeDexWeb.Pages
         {
             using (SqlConnection conn = new SqlConnection(SecurityHelper.GetDBConnectionString()))
             {
-                string cmdText = "SELECT Password, PersonID FROM Person WHERE Email=@email";
+                string cmdText = "SELECT Password, PersonID,FirstName, LastName Email FROM Person" +"" +
+                    "INNER JOIN [Role] ON Person.RoleID =  WHERE Email=@email"; ///Need to finish this,scrolled too fast
                 SqlCommand cmd = new SqlCommand(cmdText, conn);
                 // Add the @email parameter
                 cmd.Parameters.AddWithValue("@email", LoginUser.Email);
@@ -64,6 +68,33 @@ namespace MyPokeDexWeb.Pages
                             //get the PersonID and use it to update the Person record
                             int personID = reader.GetInt32(1);
                             UpdatePersonLoginTime(personID);
+
+                            //create a principle
+                            string name = reader.GetString(2);
+                            string roleName = reader.GetString(3);
+
+                            //create list of claims
+                            Claim emailClaim = new Claim(ClaimTypes.Email, LoginUser.Email);
+                            Claim nameClaim = new Claim(ClaimTypes.Name, name);
+                            Claim roleClaim = new Claim(ClaimTypes.Role, roleName);
+
+                            List<Claim> claims = new List<Claim> { emailClaim, nameClaim, roleClaim }; 
+
+                            //2. add the list of claims to a claims Identity
+
+                            ClaimsIdentity Identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+
+                            //3. add the identity to a ClaimsPrinciple
+                            ClaimsPrincipal principle = new ClaimsPrincipal(Identity);
+
+                            //4. call HTTPContext.SignInAsync() method to encrypt the principal
+                            HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principle);
+
+
+
+
+
+
                             return true;
                         }
                         else
