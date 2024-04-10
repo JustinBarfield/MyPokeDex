@@ -6,50 +6,50 @@
 
 
 <style>
-    body {
-        background-color: #f8f9fa;
-    }
+	body {
+		background-color: #f8f9fa;
+	}
 
-    .card {
-        border-radius: 1rem;
-        box-shadow: 0px 4px 20px rgba(0,0,0,0.1);
-    }
+	.card {
+		border-radius: 1rem;
+		box-shadow: 0px 4px 20px rgba(0,0,0,0.1);
+	}
 
-    .card-body {
-        padding: 3rem;
-    }
+	.card-body {
+		padding: 3rem;
+	}
 
-    .form-label {
-        font-weight: bold;
-    }
+	.form-label {
+		font-weight: bold;
+	}
 
-    .btn-primary {
-        background-color: blue;
-        border: none;
-    }
+	.btn-primary {
+		background-color: #ff385c;
+		border: none;
+	}
 
-        .btn-primary:hover {
-            background-color: blue;
-        }
+	.btn-primary:hover {
+		background-color: #e61e4d;
+	}
 
-    .text-danger {
-        color: #dc3545;
-    }
+	.text-danger {
+		color: #dc3545;
+	}
 
-    .row {
-        display: flex;
-        align-items: center;
-    }
+	.row {
+		display: flex;
+		align-items: center;
+	}
 
-    .col-2 {
-        flex: 0 0 auto;
-        text-align: right;
-        margin-right: 10px;
-    }
+	.col-2 {
+		flex: 0 0 auto;
+		text-align: right;
+		margin-right: 30px;
+	}
 
-    .col-10 {
-        flex: 1;
-    }
+	.col-10 {
+		flex: 1;
+	}
 </style>
 
 <section>
@@ -58,86 +58,73 @@
 			<div class="col-12 col-md-8 col-lg-6 col-xl-5">
 				<div class="card bg-light text-black">
 					<div class="card-body p-5 text-center">
-                        <section>
-                            <div class="container py-5 h-100">
-                                <div class="row d-flex justify-content-center align-items-center h-100">
-                                    <div class="col-12 col-md-8 col-lg-6 col-xl-5">
-                                        <div class="card bg-light text-black">
-                                            <div class="card-body p-5 text-center">
-                                                <form method="post">
-                                                    <div class="row text-black-danger" asp-validation-summary="All"></div>
+						<form method="post">
+							<div class="row text-black-danger" asp-validation-summary="All"></div>
+							<div class="row m-2">
+								<div class="col-2">
+									<label asp-for="NewPerson.FirstName" class="form-label"></label>
+								</div>
+								<div class="col-10">
+									<input asp-for="NewPerson.FirstName" type="text" class="form-control" />
+									<span asp-validation-for="NewPerson.FirstName" class="text-danger"></span>
+								</div>
 
-                                                    <div class="row m-2">
-                                                        <h1>Register</h1>
-                                                    </div>
+							</div>
 
-                                                    <div class="row m-2">
-                                                        <div class="col-10">
-                                                            <label asp-for="NewPerson.FirstName" class="form-label"></label>
-                                                        </div>
-                                                        <div class="col-10">
-                                                            <input asp-for="NewPerson.FirstName" type="text" class="form-control" />
-                                                            <span asp-validation-for="NewPerson.FirstName" class="text-danger"></span>
-                                                        </div>
-                                                    </div>
+							<div class="row m-2">
+								<div class="col-2">
+									<label asp-for="NewPerson.LastName" class="form-label"></label>
+								</div>
+								<div class="col-10">
+									<input asp-for="NewPerson.LastName" type="text" class="form-control" />
+									<span asp-validation-for="NewPerson.LastName" class="text-danger"></span>
+								</div>
 
-                                                    <div class="row m-2">
-                                                        <div class="col-2">
-                                                            <label asp-for="NewPerson.LastName" class="form-label"></label>
-                                                        </div>
-                                                        <div class="col-10">
-                                                            <input asp-for="NewPerson.LastName" type="text" class="form-control" />
-                                                            <span asp-validation-for="NewPerson.LastName" class="text-danger"></span>
-                                                        </div>
-                                                    </div>
+							</div>
 
-                                                    <div class="row m-2">
-                                                        <div class="col-10">
-                                                            <label asp-for="NewPerson.Email" class="form-label"></label>
-                                                        </div>
-                                                        <div class="col-10">
-                                                            <input asp-for="NewPerson.Email" type="email" class="form-control" />
-                                                            <span asp-validation-for="NewPerson.Email" class="text-danger"></span>
-                                                        </div>
-                                                    </div>
+							<div class="row m-2">
+								<div class="col-2">
+									<label asp-for="NewPerson.Email" class="form-label"></label>
+								</div>
+								<div class="col-10">
+									<input asp-for="NewPerson.Email" type="email" class="form-control" />
+									<span asp-validation-for="NewPerson.Email" class="text-danger"></span>
+								</div>
 
-                                                    <div class="row m-2">
-                                                        <div class="col-10">
-                                                            <label asp-for="NewPerson.Password " class="form-label"> </label>
-                                                        </div>
-                                                        <div class="col-10">
-                                                            <input asp-for="NewPerson.Password" type="password" class="form-control" />
-                                                            <span asp-validation-for="NewPerson.Password" class="text-danger"></span>
-                                                        </div>
-                                                    </div>
+							</div>
 
-                                                    <div class="row m-2">
-                                                        <div class="col-10">
-                                                            <label asp-for="NewPerson.Phone" class="form-label"></label>
-                                                        </div>
-                                                        <div class="col-10">
-                                                            <input asp-for="NewPerson.Phone" type="tel" class="form-control" />
-                                                            <span asp-validation-for="NewPerson.Phone" class="text-danger"></span>
-                                                        </div>
-                                                    </div>
+							<div class="row m-2">
+								<div class="col-2">
+									<label asp-for="NewPerson.Password" class="form-label"></label>
+								</div>
+								<div class="col-10">
+									<input asp-for="NewPerson.Password" type="password" class="form-control" />
+									<span asp-validation-for="NewPerson.Password" class="text-danger"></span>
+								</div>
 
-                                                    <div class="row m-2">
-                                                        <a href="Login">Already have an account? Sign in here.</a>
-                                                    </div>
+							</div>
 
-                                                    <div class="row m-2">
-                                                        <div class="col-10">
-                                                            <button id="btnLogin" class="btn btn-primary">Register </button>
-                                                        </div>
-                                                    </div>
-                                                </form> 
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </section>
+							<div class="row m-2">
+								<div class="col-2">
+									<label asp-for="NewPerson.Phone" class="form-label"></label>
+								</div>
+								<div class="col-10">
+									<input asp-for="NewPerson.Phone" type="tel" class="form-control" />
+									<span asp-validation-for="NewPerson.Phone" class="text-danger"></span>
+								</div>
 
+							</div>
+
+							<div class="row m-2">
+								<a href="Login">Already have an account? Sign in here.</a>
+							</div>
+
+							<div class="row m-2">
+								<div class="col-2">
+									<button id="btnLogin" class="btn btn-primary">Register </button>
+								</div>
+							</div>
+						</form>
 					</div>
 				</div>
 			</div>
