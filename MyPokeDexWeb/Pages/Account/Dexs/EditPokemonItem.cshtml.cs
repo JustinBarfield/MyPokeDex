@@ -12,9 +12,9 @@ namespace MyPokeDexWeb.Pages.Account.Dexs
     public class EditPokemonItemModel : PageModel
     {
 
-		public PokemonItem Pokemon { get; set; } = new PokemonItem();
+        public PokemonItem Pokemon { get; set; } = new PokemonItem();
 
-		public List<SelectListItem> RegionID { get; set; } = new List<SelectListItem>();
+        public List<SelectListItem> RegionID { get; set; } = new List<SelectListItem>();
         public List<SelectListItem> Type { get; set; } = new List<SelectListItem>();
 
 
@@ -25,6 +25,40 @@ namespace MyPokeDexWeb.Pages.Account.Dexs
             PopulateTypeDDL();
 
         }
+
+        public IActionResult OnPost(int id)
+        {
+			if (ModelState.IsValid)
+			{
+				using (SqlConnection conn = new SqlConnection(SecurityHelper.GetDBConnectionString()))
+				{
+					string cmdText = "UPDATE  Pokemon SET PokemonID=@pokemonID, [Dex Number]=@dexNumber, Name=@name, TypeID=@type, [State Total]=@stateTotal," +
+						"[image URL]=@imageURL, RegionID=@region, Height=@height, Weight =@weight, Audio=@audio " +
+						"WHERE PokemonID = @itemid";
+					SqlCommand cmd = new SqlCommand(cmdText, conn);
+					cmd.Parameters.AddWithValue("@pokemonID", Pokemon.PokemonID);
+					cmd.Parameters.AddWithValue("@dexNUmber", Pokemon.DexNumber);
+					cmd.Parameters.AddWithValue("@name", Pokemon.Name);
+					cmd.Parameters.AddWithValue("@type", Pokemon.TypeID);
+					cmd.Parameters.AddWithValue("@stateTotal", Pokemon.StateTotal);
+					cmd.Parameters.AddWithValue("@imageURL", Pokemon.ImageURL);
+					cmd.Parameters.AddWithValue("@region", Pokemon.RegionID);
+					cmd.Parameters.AddWithValue("@height", Pokemon.Height);
+					cmd.Parameters.AddWithValue("@weight", Pokemon.Weight);
+					cmd.Parameters.AddWithValue("@audio", Pokemon.Audio);
+					cmd.Parameters.AddWithValue("@itemID", id);
+
+					conn.Open();
+					cmd.ExecuteNonQuery();
+					return RedirectToPage("ViewDexItems");
+				}
+			}
+			else
+			{
+				return Page();
+
+			}
+		}
 
         private void PopulateTypeDDL()
         {
@@ -74,7 +108,31 @@ namespace MyPokeDexWeb.Pages.Account.Dexs
 
         private void PopluateDexItem(int id)
         {
-            
+            using (SqlConnection conn = new SqlConnection(SecurityHelper.GetDBConnectionString()))
+            {
+                string cmdText = "SELECT PokemonID, [Dex Number], Name, TypeID, [State Total], [image URL], RegionID, Height, Weight, Audio FROM Pokemon WHERE PokemonID = @itemID";
+                SqlCommand cmd = new SqlCommand(cmdText, conn);
+                cmd.Parameters.AddWithValue("@itemID", id);
+                conn.Open();
+                SqlDataReader reader = cmd.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    reader.Read();
+                    Pokemon.PokemonID = id;
+                    Pokemon.PokemonID = reader.GetInt32(0);
+                    Pokemon.DexNumber = reader.GetInt32(1);
+                    Pokemon.Name = reader.GetString(2);
+                    Pokemon.TypeID = reader.GetInt32(3);
+                    Pokemon.StateTotal = reader.GetInt32(4);
+                    Pokemon.ImageURL = reader.GetString(5);
+                    Pokemon.RegionID = reader.GetInt32(6);
+                    Pokemon.Height = reader.GetString(7);
+                    Pokemon.Weight = reader.GetString(8);
+                    Pokemon.Audio = reader.GetString(9);
+
+                }
+
+            }
         }
     }
 }

@@ -16,12 +16,12 @@ namespace MyPokeDexWeb.Pages.Account
         public UserProfile profile { get; set; }
         public void OnGet()
         {
-            PopulateProfile();
+          //  PopulateProfile();
 
 
         }
 
-		private void PopulateProfile()
+		/*private void PopulateProfile()
 		{
             string email = HttpContext.User.FindFirstValue(ClaimValueTypes.Email);
             using(SqlConnection conn = new SqlConnection(SecurityHelper.GetDBConnectionString()))
@@ -34,6 +34,6 @@ namespace MyPokeDexWeb.Pages.Account
 
             }
 			
-		}
+		}*/
 	}
 }
