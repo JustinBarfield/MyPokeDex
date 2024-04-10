@@ -36,10 +36,10 @@ namespace MyPokeDexWeb.Pages.Account.Dexs
 					cmd.Parameters.AddWithValue("@pokemonID", NewPokemon.PokemonID);
 					cmd.Parameters.AddWithValue("@dexNUmber", NewPokemon.DexNumber);
 					cmd.Parameters.AddWithValue("@name", NewPokemon.Name);
-					cmd.Parameters.AddWithValue("@type", NewPokemon.Type);
+					cmd.Parameters.AddWithValue("@type", NewPokemon.TypeID);
 					cmd.Parameters.AddWithValue("@stateTotal", NewPokemon.StateTotal);
 					cmd.Parameters.AddWithValue("@imageURL", NewPokemon.ImageURL);
-					cmd.Parameters.AddWithValue("@region", NewPokemon.Region);
+					cmd.Parameters.AddWithValue("@region", NewPokemon.RegionID);
 					cmd.Parameters.AddWithValue("@height", NewPokemon.Height);
 					cmd.Parameters.AddWithValue("@weight", NewPokemon.Weight);
 
@@ -93,7 +93,7 @@ namespace MyPokeDexWeb.Pages.Account.Dexs
 						var region = new SelectListItem();
 						region.Value = reader.GetInt32(0).ToString();
 						region.Text = reader.GetString(1);
-						Region.Add(region);
+						RegionID.Add(region);
 					}
 
 				}

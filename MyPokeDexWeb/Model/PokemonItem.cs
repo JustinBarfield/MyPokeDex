@@ -13,14 +13,14 @@ namespace MyPokeDexWeb.Model
         public int DexNumber { get; set; }
         [Required]
         [Display(Name = "Type")]
-        public string Type { get; set; }
+        public int TypeID { get; set; }
         [Required]
         [Display(Name = "State Total")]
         public int StateTotal { get; set; }
         public string ImageURL { get; set; }
         
         [Display(Name = "Region")]
-        public string RegionID { get; set; }
+        public int RegionID { get; set; }
 
         public string Height { get; set; }
         public string Weight { get; set; }

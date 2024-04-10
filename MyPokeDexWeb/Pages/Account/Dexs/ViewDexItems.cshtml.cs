@@ -35,7 +35,7 @@ namespace MyPokeDexWeb.Pages.Account.Dexs
 		{
 			using (SqlConnection conn = new SqlConnection(SecurityHelper.GetDBConnectionString()))
 			{
-				string cmdText = " SELECT PokemonID, [Dex Number], Type, [State Total], [image URL], Region, Height, Weight, Audio FROM Pokemon WHERE RegionID = @regionID";
+				string cmdText = " SELECT PokemonID, [Dex Number], TypeID, [State Total], [image URL], RegionID, Height, Weight, Audio FROM Pokemon WHERE RegionID = @regionID";
 				SqlCommand cmd = new SqlCommand(cmdText, conn);
 				cmd.Parameters.AddWithValue("@RegionID", id);
 				conn.Open();
@@ -48,10 +48,10 @@ namespace MyPokeDexWeb.Pages.Account.Dexs
 						var item = new PokemonItem();
 						item.PokemonID = reader.GetInt32(0);
 						item.DexNumber = reader.GetInt32(1);
-						item.Type = reader.GetString(2);
+						item.TypeID = reader.GetInt32(2);
 						item.StateTotal = reader.GetInt32(3);
 						item.ImageURL = reader.GetString(4);
-						item.RegionID = reader.GetString(5);
+						item.RegionID = reader.GetInt32(5);
 						item.Height= reader.GetString(6);
 						item.Weight = reader.GetString(7);
 						item.Audio = reader.GetString(8);

@@ -51,11 +51,11 @@
 
                                 <div class="row m-2">
                                     <div class="col-2">
-                                        <label asp-for="NewPokemon.Type " class="form-label"> </label>
+                                        <label asp-for="NewPokemon.TypeID " class="form-label"> </label>
                                     </div>
                                     <div class="col-10">
-                                        <select asp-for="NewPokemon.Type" asp-items="@Model.Type">  </select>
-                                        <span asp-validation-for="NewPokemon.Type" class="text-danger"></span>
+                                        <select asp-for="NewPokemon.TypeID" asp-items="@Model.Type">  </select>
+                                        <span asp-validation-for="NewPokemon.TypeID" class="text-danger"></span>
                                     </div>
 
                                 </div>
@@ -72,10 +72,10 @@
 
                                 <div class="row m-2">
                                     <div class="col-2">
-                                        <label asp-for="NewPokemon.Region" class="form-label"></label>
+                                        <label asp-for="NewPokemon.RegionID" class="form-label"></label>
                                     </div>
                                     <div class="col-10">
-                                        <select asp-for="NewPokemon.Region" asp-items="@Model.RegionID">  </select>
+                                        <select asp-for="NewPokemon.RegionID" asp-items="@Model.RegionID">  </select>
                                         <span asp-validation-for="NewPokemon.RegionID" class="text-danger"></span>
                                     </div>
                                 </div>
