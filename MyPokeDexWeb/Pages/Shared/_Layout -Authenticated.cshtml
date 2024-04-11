@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/MyPokeDexWeb.styles.css" asp-append-version="true" />
 </head>
+
 <body>
     <header>
         <nav class="navbar fixed-top navbar-expand-sm navbar-toggleable-sm navbar-dark bg-black border-bottom box-shadow mb-3">
@@ -45,7 +46,16 @@
                         <a class="nav-link text-white" asp-area="" asp-page="/Account/Profile">Profile</a>
                     </div>
 </div>
+                <div class="dropdown show">
+                    <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Profile
+                    </a>
 
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                        <a class="dropdown-item" href="/Account/Profile">Profile</a>
+                        <a class="dropdown-item" href="/Account/LogOut">Sign Out</a>
+                    </div>
+                </div>
 
 
 
