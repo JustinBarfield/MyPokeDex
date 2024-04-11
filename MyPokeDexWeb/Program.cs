@@ -4,9 +4,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
-
-//
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+
     .AddCookie(options =>
     {
         options.Cookie.Name = "MyPokedexCookie";

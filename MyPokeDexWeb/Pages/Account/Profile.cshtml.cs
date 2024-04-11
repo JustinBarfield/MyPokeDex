@@ -13,27 +13,37 @@ namespace MyPokeDexWeb.Pages.Account
     public class ProfileModel : PageModel
     {
         [BindProperty]
-        public UserProfile profile { get; set; }
+        public UserProfile profile { get; set; } = new UserProfile();
         public void OnGet()
         {
-          //  PopulateProfile();
+            PopulateProfile();
 
 
         }
 
-		/*private void PopulateProfile()
+		private void PopulateProfile()
 		{
             string email = HttpContext.User.FindFirstValue(ClaimValueTypes.Email);
             using(SqlConnection conn = new SqlConnection(SecurityHelper.GetDBConnectionString()))
             {
-                string cmdText = "SELECT FIrstName, LastName, Email,Phone, LastLoginTime FROM Person WHERE Email=@email ";
+                string cmdText = "SELECT FirstName, LastName, Email,Phone, LastLoginTime FROM Person WHERE Email=@email ";
+                SqlCommand cmd = new SqlCommand(cmdText, conn);
                 cmd.Parameters.AddWithValue("@email",email);
                 conn.Open();
-                SqlDataReader;
+                SqlDataReader reader = cmd.ExecuteReader();
+                if(reader.HasRows)
+                {
+                    reader.Read();
+                    profile.FirstName = reader.GetString(0);
+                    profile.LastName = reader.GetString(1);
+                    profile.Email = reader.GetString(2);    
+                    profile.Phone = reader.GetString(3);
+                    profile.LastLoginTime = reader.GetDateTime(4);
+                }
 
 
             }
 			
-		}*/
+		}
 	}
 }

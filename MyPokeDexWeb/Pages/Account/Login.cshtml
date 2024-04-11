@@ -1,6 +1,8 @@
 ﻿@page
 @model MyPokeDexWeb.Pages.LoginModel
 @{
+	Layout = HttpContext.User.Identity.IsAuthenticated ? "_Layout -Authenticated" : "_Layout";
+
 }
 
 
