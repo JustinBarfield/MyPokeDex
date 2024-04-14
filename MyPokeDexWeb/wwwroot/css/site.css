@@ -30,3 +30,8 @@ navbar-brand{
     color:white;
 }
 
+.nav-item.dropdown {
+    display: flex;
+    align-items: center;
+}
+
