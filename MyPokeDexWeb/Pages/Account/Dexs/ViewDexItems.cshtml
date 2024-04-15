@@ -15,6 +15,16 @@
 		</div>
 	</div>
 
+	<div class="row m-2">
+		<div class="col-2">
+			<label class="form-label">Type</label>
+		</div>
+		<div class="col-8">
+			<select asp-for="SelectedTypeID" asp-items="Model.TypeID"></select>
+		</div>
+		
+	</div>
+
 	@foreach (var pokemon in Model.PokemonItems)
 	{
 		<div class="row m-2 border">
@@ -54,10 +64,10 @@
 		<div class="row m-2 border">
 			<div class="row m-2">
 				<div class="col-2">
-					<label class="form-label" asp-for="@pokemon.TypeID"></label><!-- gets the item display name-->
+					<label class="form-label" asp-for="@pokemon.TypeName"></label><!-- gets the item display name-->
 				</div>
 				<div class="col-10">
-					<label class="form-label">@pokemon.TypeID</label><!-- gets the value stored-->
+					<label class="form-label">@pokemon.TypeName</label><!-- gets the value stored-->
 				</div>
 			</div>
 		</div>
