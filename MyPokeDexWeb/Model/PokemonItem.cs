@@ -12,9 +12,12 @@ namespace MyPokeDexWeb.Model
         [Display(Name = "Dex Number")]
         public int DexNumber { get; set; }
         [Required]
-        [Display(Name = "Type")]
+        [Display(Name = "Type ID")]
         public int TypeID { get; set; }
-        [Required]
+		[Required]
+		[Display(Name = "Type")]
+		public string TypeName { get; set; }
+		[Required]
         [Display(Name = "State Total")]
         public int StateTotal { get; set; }
         public string ImageURL { get; set; }
