@@ -1,137 +1,34 @@
 ﻿USE [MyPokedex]
 GO
-/****** Object:  Table [dbo].[Person]    Script Date: 4/16/2024 1:02:14 PM ******/
-SET ANSI_NULLS ON
+INSERT [dbo].[Region] ([RegionID], [RegionName]) VALUES (0, N'Any')
 GO
-SET QUOTED_IDENTIFIER ON
+INSERT [dbo].[Region] ([RegionID], [RegionName]) VALUES (1, N'JOHTO')
 GO
-CREATE TABLE [dbo].[Person](
-	[PersonID] [int] IDENTITY(1,1) NOT NULL,
-	[FirstName] [varchar](50) NOT NULL,
-	[LastName] [varchar](50) NOT NULL,
-	[Email] [varchar](50) NOT NULL,
-	[Password] [varchar](max) NOT NULL,
-	[RoleID] [int] NULL,
-	[Phone] [varchar](50) NULL,
-	[LastLoginTime] [date] NULL,
- CONSTRAINT [PK_User] PRIMARY KEY CLUSTERED 
-(
-	[PersonID] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
-) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+INSERT [dbo].[Region] ([RegionID], [RegionName]) VALUES (2, N'test')
 GO
-/****** Object:  Table [dbo].[Pokemon]    Script Date: 4/16/2024 1:02:14 PM ******/
-SET ANSI_NULLS ON
+INSERT [dbo].[Type] ([TypeID], [TypeName]) VALUES (0, N'Any')
 GO
-SET QUOTED_IDENTIFIER ON
+INSERT [dbo].[Type] ([TypeID], [TypeName]) VALUES (1, N'fire')
 GO
-CREATE TABLE [dbo].[Pokemon](
-	[PokemonID] [int] NOT NULL,
-	[Dex Number] [int] NOT NULL,
-	[Name] [text] NOT NULL,
-	[TypeID] [int] NULL,
-	[State Total] [int] NOT NULL,
-	[image URL] [varchar](50) NULL,
-	[RegionID] [int] NULL,
-	[Height] [text] NULL,
-	[Weight] [text] NULL,
-	[Audio] [varchar](50) NULL,
- CONSTRAINT [PK_MyPokedex] PRIMARY KEY CLUSTERED 
-(
-	[PokemonID] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
-) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+INSERT [dbo].[Type] ([TypeID], [TypeName]) VALUES (2, N'water')
 GO
-/****** Object:  Table [dbo].[Region]    Script Date: 4/16/2024 1:02:14 PM ******/
-SET ANSI_NULLS ON
+INSERT [dbo].[Type] ([TypeID], [TypeName]) VALUES (3, N'Electric')
 GO
-SET QUOTED_IDENTIFIER ON
+INSERT [dbo].[Pokemon] ([PokemonID], [Dex Number], [Name], [TypeID], [State Total], [image URL], [RegionID], [Height], [Weight], [Audio]) VALUES (1, 1, N'pokemon123', 1, 100, N'adfasf', 1, N'12', N'12', N'SDF')
 GO
-CREATE TABLE [dbo].[Region](
-	[RegionID] [int] NOT NULL,
-	[RegionName] [varchar](50) NULL,
- CONSTRAINT [PK_Region] PRIMARY KEY CLUSTERED 
-(
-	[RegionID] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
-) ON [PRIMARY]
+INSERT [dbo].[Pokemon] ([PokemonID], [Dex Number], [Name], [TypeID], [State Total], [image URL], [RegionID], [Height], [Weight], [Audio]) VALUES (2, 11, N'test', 1, 100, N'asf', 2, N'5415', N'545f', N'afd')
 GO
-/****** Object:  Table [dbo].[Role]    Script Date: 4/16/2024 1:02:14 PM ******/
-SET ANSI_NULLS ON
+INSERT [dbo].[Pokemon] ([PokemonID], [Dex Number], [Name], [TypeID], [State Total], [image URL], [RegionID], [Height], [Weight], [Audio]) VALUES (5151, 6969, N'asd', 1, 2165, N'asdf', 1, N'516', N'1651', N'asdf')
 GO
-SET QUOTED_IDENTIFIER ON
+INSERT [dbo].[Role] ([RoleID], [RoleName]) VALUES (1, N'Admin')
 GO
-CREATE TABLE [dbo].[Role](
-	[RoleID] [int] NOT NULL,
-	[RoleName] [varchar](50) NULL,
- CONSTRAINT [PK_Role] PRIMARY KEY CLUSTERED 
-(
-	[RoleID] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
-) ON [PRIMARY]
+INSERT [dbo].[Role] ([RoleID], [RoleName]) VALUES (2, NULL)
 GO
-/****** Object:  Table [dbo].[Type]    Script Date: 4/16/2024 1:02:14 PM ******/
-SET ANSI_NULLS ON
+SET IDENTITY_INSERT [dbo].[Person] ON 
 GO
-SET QUOTED_IDENTIFIER ON
+INSERT [dbo].[Person] ([PersonID], [FirstName], [LastName], [Email], [Password], [RoleID], [Phone], [LastLoginTime]) VALUES (4, N'Justin', N'Barfield', N'justinbarfield02@gmail.com', N'$2a$13$WMYtvHkj1GLuO/wMiWVNhe8Oj5.Jztb6cLBVGbOw5zjUHVTznZjjO', 2, N'8178569902', CAST(N'2024-04-16' AS Date))
 GO
-CREATE TABLE [dbo].[Type](
-	[TypeID] [int] NOT NULL,
-	[TypeName] [varchar](50) NULL,
- CONSTRAINT [PK_Type] PRIMARY KEY CLUSTERED 
-(
-	[TypeID] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
-) ON [PRIMARY]
+INSERT [dbo].[Person] ([PersonID], [FirstName], [LastName], [Email], [Password], [RoleID], [Phone], [LastLoginTime]) VALUES (1002, N'demo', N'demo', N'demo@gmail.com', N'$2a$13$eBAEUKM4KKeGqW82q3LOOO4.A9X3kOUe1m9JkOYvEYKK1iMSMgWPy', 2, N'12345', CAST(N'2024-04-15' AS Date))
 GO
-/****** Object:  Table [dbo].[UserPokemon]    Script Date: 4/16/2024 1:02:14 PM ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [dbo].[UserPokemon](
-	[UserPokemonID] [int] NOT NULL,
-	[UserID] [int] NOT NULL,
-	[PokemonID] [int] NOT NULL,
-	[RegisterDate] [varchar](50) NOT NULL,
- CONSTRAINT [PK_UserPokemon] PRIMARY KEY CLUSTERED 
-(
-	[UserPokemonID] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
-) ON [PRIMARY]
-GO
-ALTER TABLE [dbo].[Person]  WITH CHECK ADD  CONSTRAINT [FK_User_User] FOREIGN KEY([PersonID])
-REFERENCES [dbo].[Person] ([PersonID])
-GO
-ALTER TABLE [dbo].[Person] CHECK CONSTRAINT [FK_User_User]
-GO
-ALTER TABLE [dbo].[Person]  WITH CHECK ADD  CONSTRAINT [FK_User_User1] FOREIGN KEY([RoleID])
-REFERENCES [dbo].[Role] ([RoleID])
-GO
-ALTER TABLE [dbo].[Person] CHECK CONSTRAINT [FK_User_User1]
-GO
-ALTER TABLE [dbo].[Pokemon]  WITH CHECK ADD  CONSTRAINT [FK_Pokemon_Pokemon] FOREIGN KEY([PokemonID])
-REFERENCES [dbo].[Pokemon] ([PokemonID])
-GO
-ALTER TABLE [dbo].[Pokemon] CHECK CONSTRAINT [FK_Pokemon_Pokemon]
-GO
-ALTER TABLE [dbo].[Pokemon]  WITH CHECK ADD  CONSTRAINT [FK_Pokemon_Pokemon1] FOREIGN KEY([PokemonID])
-REFERENCES [dbo].[Pokemon] ([PokemonID])
-GO
-ALTER TABLE [dbo].[Pokemon] CHECK CONSTRAINT [FK_Pokemon_Pokemon1]
-GO
-ALTER TABLE [dbo].[Pokemon]  WITH CHECK ADD  CONSTRAINT [FK_Pokemon_Region] FOREIGN KEY([RegionID])
-REFERENCES [dbo].[Region] ([RegionID])
-GO
-ALTER TABLE [dbo].[Pokemon] CHECK CONSTRAINT [FK_Pokemon_Region]
-GO
-ALTER TABLE [dbo].[Pokemon]  WITH CHECK ADD  CONSTRAINT [FK_Pokemon_Type] FOREIGN KEY([TypeID])
-REFERENCES [dbo].[Type] ([TypeID])
-GO
-ALTER TABLE [dbo].[Pokemon] CHECK CONSTRAINT [FK_Pokemon_Type]
-GO
-ALTER TABLE [dbo].[UserPokemon]  WITH CHECK ADD  CONSTRAINT [FK_UserPokemon_UserPokemon] FOREIGN KEY([UserPokemonID])
-REFERENCES [dbo].[UserPokemon] ([UserPokemonID])
-GO
-ALTER TABLE [dbo].[UserPokemon] CHECK CONSTRAINT [FK_UserPokemon_UserPokemon]
+SET IDENTITY_INSERT [dbo].[Person] OFF
 GO
