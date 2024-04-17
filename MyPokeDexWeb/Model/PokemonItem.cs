@@ -14,9 +14,8 @@ namespace MyPokeDexWeb.Model
         [Required]
         [Display(Name = "Type ID")]
         public int TypeID { get; set; }
-		[Required]
-		[Display(Name = "Type")]
-		public string TypeName { get; set; }
+		
+		
 		[Required]
         [Display(Name = "State Total")]
         public int StateTotal { get; set; }
