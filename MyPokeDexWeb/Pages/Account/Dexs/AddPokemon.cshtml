@@ -14,13 +14,23 @@
 		background-color: #f8f9fa;
 	}
 
+	
+
 	.card {
 		border-radius: 1rem;
 		box-shadow: 0px 4px 20px rgba(0,0,0,0.1);
+		/* center the element */
+		margin-left: -5em;
+		margin-right: 0em ;
+		/* give it dimensions */
+		min-width: 700px;
+		max-height: 700px;
 	}
 
+
 	.card-body {
-		padding: 3rem;
+		padding: 3.5rem;
+		
 	}
 
 	.form-label {
@@ -54,6 +64,7 @@
 	.col-10 {
 		flex: 1;
 	}
+
 </style>
 
 <section>
@@ -77,7 +88,6 @@
 									<input asp-for="NewPokemon.PokemonID" type="text" class="form-control" />
 									<span asp-validation-for="NewPokemon.PokemonID" class="text-danger"></span>
 								</div>
-
 							</div>
 
 							<div class="row m-2">
