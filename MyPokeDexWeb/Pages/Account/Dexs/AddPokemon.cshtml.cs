@@ -26,6 +26,10 @@ namespace MyPokeDexWeb.Pages.Account.Dexs
 
 		public IActionResult OnPost()
 		{
+
+			PopulateRegionDDL();
+			PopulateTypeDDL();
+
 			if (ModelState.IsValid)
 			{
 				using (SqlConnection conn = new SqlConnection(SecurityHelper.GetDBConnectionString()))

@@ -87,7 +87,7 @@ namespace MyPokeDexWeb.Pages.Account.Dexs
 						item.Height = reader.GetString(7);
 						item.Weight = reader.GetString(8);
 						item.Audio = reader.GetString(9);
-						item.TypeName = reader.GetString(10); // Get the type name
+						
 						PokemonItems.Add(item);
 					}
 				}
@@ -123,7 +123,7 @@ namespace MyPokeDexWeb.Pages.Account.Dexs
 						item.Height = reader.GetString(7);
 						item.Weight = reader.GetString(8);
 						item.Audio = reader.GetString(9);
-						item.TypeName = reader.GetString(10); // Get the type name
+						
 						PokemonItems.Add(item);
 					}
 				}
@@ -159,7 +159,7 @@ namespace MyPokeDexWeb.Pages.Account.Dexs
 						item.Height = reader.GetString(7);
 						item.Weight = reader.GetString(8);
 						item.Audio = reader.GetString(9);
-						item.TypeName = reader.GetString(10); // Get the type name
+						
 						PokemonItems.Add(item);
 					}
 				}
@@ -194,7 +194,7 @@ namespace MyPokeDexWeb.Pages.Account.Dexs
 						item.Height = reader.GetString(7);
 						item.Weight = reader.GetString(8);
 						item.Audio = reader.GetString(9);
-						item.TypeName = reader.GetString(10); // Get the type name
+						
 						PokemonItems.Add(item);
 					}
 				}
