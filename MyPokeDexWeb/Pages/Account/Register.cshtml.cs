@@ -19,7 +19,7 @@ namespace MyPokeDexWeb.Pages.Account
 
         public IActionResult OnPost()
         {
-            if (ModelState.IsValid)
+			if (ModelState.IsValid)
             {
                 //Make sure the email is not already in the table
 

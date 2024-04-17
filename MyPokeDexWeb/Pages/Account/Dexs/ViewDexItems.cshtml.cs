@@ -5,7 +5,6 @@ using Microsoft.Data.SqlClient;
 using MyPokedexBusiness;
 using MyPokeDexWeb.Model;
 
-
 namespace MyPokeDexWeb.Pages.Account.Dexs
 {
 	[BindProperties]
@@ -21,14 +20,47 @@ namespace MyPokeDexWeb.Pages.Account.Dexs
 
 		public List<PokemonItem> PokemonItems { get; set; } = new List<PokemonItem>();
 
-        
-                
-        public void OnGet()
+		public int PokemonRegionID { get; set; }
+
+
+
+
+
+		public void OnGet()
         {
             PopulateRegionDDL();
 			PopulateTypeDDL();
+			//PopulatePokemonRegionID();
+
 
         }
+
+		//private void PopulatePokemonRegionID()
+		//{
+		//	using (SqlConnection conn = new SqlConnection(SecurityHelper.GetDBConnectionString()))
+		//	{
+		//		string cmdText = "Select RegionID, RegionName From Region ORDER BY RegionName";
+		//		SqlCommand cmd = new SqlCommand(cmdText, conn);
+		//		conn.Open();
+		//		SqlDataReader reader = cmd.ExecuteReader();
+		//		if (reader.HasRows)
+		//		{
+
+		//			while (reader.Read())
+		//			{
+		//				var region = new SelectListItem();
+		//				region.Value = reader.GetInt32(0).ToString();
+		//				region.Text = reader.GetString(1);
+						
+		//				
+						                                                                //i think i need to assign it to a variable instead of a list
+		//			}
+		//			@pokemonItem.RegionID = region.Value;
+
+		//		}
+		//	}
+
+		//}
 
 		public void OnPost()
 		{
@@ -55,6 +87,7 @@ namespace MyPokeDexWeb.Pages.Account.Dexs
 			// Repopulate dropdown lists
 			PopulateRegionDDL();
 			PopulateTypeDDL();
+			
 		}
 
 

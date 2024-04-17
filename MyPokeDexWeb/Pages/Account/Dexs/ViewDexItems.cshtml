@@ -2,7 +2,8 @@
 @model MyPokeDexWeb.Pages.Account.Dexs.ViewDexItemsModel
 @{
 }
-@* <form method="post" class="form-group">
+@* 
+<form method="post" class="form-group">
     <div class="row m-2">
         <div class="col-2">
             <label class="form-label">Region</label>
@@ -25,6 +26,7 @@
 
     </div>
 </form>
+
 	@foreach (var pokemon in Model.PokemonItems)
 	{
 		<div class="row m-2 border">
@@ -132,7 +134,7 @@
 
 	
 	
-	} *@
+	}  *@
 
 
 <section>
@@ -160,6 +162,8 @@
 			</div>
 
 
+
+
 			<div class="table-responsive">
 				<table class="table">
 					<thead>
@@ -183,7 +187,7 @@
 								<td>@pokemon.PokemonID</td>
 								<td>@pokemon.DexNumber</td>
 								<td>@pokemon.Name</td>
-								<td>@pokemon.TypeName</td>
+								<td>@pokemon.TypeID</td>
 								<td>@pokemon.StateTotal</td>
 								<td>@pokemon.ImageURL</td>
 								<td>@pokemon.RegionID</td>

@@ -4,54 +4,6 @@
 }
 
 
-
-<style>
-	body {
-		background-color: #f8f9fa;
-	}
-
-	.card {
-		border-radius: 1rem;
-		box-shadow: 0px 4px 20px rgba(0,0,0,0.1);
-	}
-
-	.card-body {
-		padding: 3rem;
-	}
-
-	.form-label {
-		font-weight: bold;
-	}
-
-	.btn-primary {
-		background-color: red;
-		border: none;
-	}
-
-	.btn-primary:hover {
-		background-color: red;
-	}
-
-	.text-danger {
-		color: #dc3545;
-	}
-
-	.row {
-		display: flex;
-		align-items: center;
-	}
-
-	.col-2 {
-		flex: 0 0 auto;
-		text-align: right;
-		margin-right: 30px;
-	}
-
-	.col-10 {
-		flex: 1;
-	}
-</style>
-
 <section>
 	<div class="container py-5 h-100">
 		<div class="row d-flex justify-content-center align-items-center h-100">
@@ -103,8 +55,9 @@
 									<label asp-for="NewPerson.Password" class="form-label"></label>
 								</div>
 								<div class="col-10">
-									<input asp-for="NewPerson.Password" type="password" class="form-control" />
+									<input asp-for="NewPerson.Password" type="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"  class="form-control" />
 									<span asp-validation-for="NewPerson.Password" class="text-danger"></span>
+
 								</div>
 
 							</div>
