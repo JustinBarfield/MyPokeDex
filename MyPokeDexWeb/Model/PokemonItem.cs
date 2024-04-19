@@ -14,9 +14,15 @@ namespace MyPokeDexWeb.Model
         [Required]
         [Display(Name = "Type ID")]
         public int TypeID { get; set; }
-		
-		
-		[Required]
+
+		[Display(Name = "Type Name")]
+		public int TypeName { get; set; }
+
+        public string PokemonRegionID { get; set; }
+
+        public string PokemonTypeID { get; set; }
+
+        [Required]
         [Display(Name = "State Total")]
         public int StateTotal { get; set; }
         public string ImageURL { get; set; }
@@ -24,7 +30,10 @@ namespace MyPokeDexWeb.Model
         [Display(Name = "Region")]
         public int RegionID { get; set; }
 
-        public string Height { get; set; }
+		[Display(Name = "Region")]
+		public int RegionName { get; set; }
+
+		public string Height { get; set; }
         public string Weight { get; set; }
         public string Audio { get; set; }
 

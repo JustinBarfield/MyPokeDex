@@ -1,6 +1,7 @@
 ﻿@page
 @model MyPokeDexWeb.Pages.Account.Dexs.EditPokemonItemModel
 @{
+    Layout = HttpContext.User.Identity.IsAuthenticated ? "_Layout -Authenticated" : "_Layout";
 }
 <form method="post" class=" form-group">
     <section>
