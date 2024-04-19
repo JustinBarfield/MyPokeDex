@@ -11,22 +11,26 @@ namespace MyPokeDexWeb.Pages.Account.Dexs
     [BindProperties]
     public class ViewDexItemsModel : PageModel
     {
+        // Properties for the region and type dropdown lists
         public List<SelectListItem> RegionID { get; set; } = new List<SelectListItem>();
         public int SelectedRegionID { get; set; }
 
         public List<SelectListItem> TypeID { get; set; } = new List<SelectListItem>();
         public int SelectedTypeID { get; set; }
 
+        // List to hold Pokémon items
         public List<PokemonItem> PokemonItems { get; set; } = new List<PokemonItem>();
 
         public string PokemonRegionID { get; set; }
 
+        // Method to handle GET requests
         public void OnGet()
         {
             PopulateRegionDDL();
             PopulateTypeDDL();
         }
 
+        // Method to handle POST requests
         public void OnPost()
         {
             // Check if both RegionID and TypeID are selected
@@ -54,6 +58,7 @@ namespace MyPokeDexWeb.Pages.Account.Dexs
             PopulateTypeDDL();
         }
 
+        // Method to populate Pokémon items based on the selected region and type
         private void PopulatDexItemByRegionAndType(int regionID, int typeID)
         {
             using (SqlConnection conn = new SqlConnection(SecurityHelper.GetDBConnectionString()))
@@ -81,17 +86,18 @@ namespace MyPokeDexWeb.Pages.Account.Dexs
                         item.StateTotal = reader.GetInt32(4);
                         item.ImageURL = reader.GetString(5);
                         item.RegionID = reader.GetInt32(6);
-                        item.PokemonRegionID = reader.GetString(7); // Set RegionName
+                        item.PokemonRegionID = reader.GetString(7);
+                        item.PokemonTypeName = reader.GetString(11); // Assign type name here
                         item.Height = reader.GetString(8);
                         item.Weight = reader.GetString(9);
                         item.Audio = reader.GetString(10);
-
                         PokemonItems.Add(item);
                     }
                 }
             }
         }
 
+        // Method to populate Pokémon items based on the selected region
         private void PopulatDexItemByRegion(int regionID)
         {
             using (SqlConnection conn = new SqlConnection(SecurityHelper.GetDBConnectionString()))
@@ -118,17 +124,18 @@ namespace MyPokeDexWeb.Pages.Account.Dexs
                         item.StateTotal = reader.GetInt32(4);
                         item.ImageURL = reader.GetString(5);
                         item.RegionID = reader.GetInt32(6);
-                        item.PokemonRegionID = reader.GetString(7); // Set RegionName
+                        item.PokemonRegionID = reader.GetString(7); // Assign region name
+                        item.PokemonTypeName = reader.GetString(11); // Assign type name here
                         item.Height = reader.GetString(8);
                         item.Weight = reader.GetString(9);
                         item.Audio = reader.GetString(10);
-
                         PokemonItems.Add(item);
                     }
                 }
             }
         }
 
+        // Method to populate Pokémon items based on the selected type
         private void PopulatDexItemByType(int typeID)
         {
             using (SqlConnection conn = new SqlConnection(SecurityHelper.GetDBConnectionString()))
@@ -155,17 +162,18 @@ namespace MyPokeDexWeb.Pages.Account.Dexs
                         item.StateTotal = reader.GetInt32(4);
                         item.ImageURL = reader.GetString(5);
                         item.RegionID = reader.GetInt32(6);
-                        item.PokemonRegionID = reader.GetString(7); // Set RegionName
+                        item.PokemonRegionID = reader.GetString(7); // Assign region name
+                        item.PokemonTypeName = reader.GetString(11); // Assign type name here
                         item.Height = reader.GetString(8);
                         item.Weight = reader.GetString(9);
                         item.Audio = reader.GetString(10);
-
                         PokemonItems.Add(item);
                     }
                 }
             }
         }
 
+        // Method to populate all Pokémon items
         private void PopulateAllPokemon()
         {
             using (SqlConnection conn = new SqlConnection(SecurityHelper.GetDBConnectionString()))
@@ -190,20 +198,21 @@ namespace MyPokeDexWeb.Pages.Account.Dexs
                         item.StateTotal = reader.GetInt32(4);
                         item.ImageURL = reader.GetString(5);
                         item.RegionID = reader.GetInt32(6);
-                        item.PokemonRegionID = reader.GetString(7); // Set RegionName
+                        item.PokemonRegionID = reader.GetString(7); // Assign region name
+                        item.PokemonTypeName = reader.GetString(11); // Assign type name here
                         item.Height = reader.GetString(8);
                         item.Weight = reader.GetString(9);
                         item.Audio = reader.GetString(10);
-
                         PokemonItems.Add(item);
                     }
                 }
             }
         }
 
+        // Method to populate the region dropdown list
         private void PopulateRegionDDL()
         {
-            // Populate Region drop-down list with data from database
+            // Populate the Region dropdown list with data from the database
             using (SqlConnection conn = new SqlConnection(SecurityHelper.GetDBConnectionString()))
             {
                 conn.Open();
@@ -222,9 +231,10 @@ namespace MyPokeDexWeb.Pages.Account.Dexs
             }
         }
 
+        // Method to populate the type dropdown list
         private void PopulateTypeDDL()
         {
-            // Populate Type drop-down list with data from database
+            // Populate the Type dropdown list with data from the database
             using (SqlConnection conn = new SqlConnection(SecurityHelper.GetDBConnectionString()))
             {
                 conn.Open();
@@ -244,4 +254,3 @@ namespace MyPokeDexWeb.Pages.Account.Dexs
         }
     }
 }
-

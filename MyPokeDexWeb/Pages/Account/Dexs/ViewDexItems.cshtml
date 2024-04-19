@@ -37,7 +37,6 @@
                             <th>Name</th>
                             <th>Type</th>
                             <th>Total State</th>
-                            <th>Image URL</th>
                             <th>Region</th>
                             <th>Height</th>
                             <th>Weight</th>
@@ -51,10 +50,9 @@
                                 <td>@pokemon.PokemonID</td>
                                 <td>@pokemon.DexNumber</td>
                                 <td>@pokemon.Name</td>
-                                <td>@pokemon.TypeID</td>
+                                <td>@pokemon.PokemonTypeName</td> <!-- Display type name here -->
                                 <td>@pokemon.StateTotal</td>
-                                <td>@pokemon.ImageURL</td>
-                                <td>@pokemon.PokemonRegionID</td>
+                                <td>@pokemon.PokemonRegionID</td> <!-- Display region name here -->
                                 <td>@pokemon.Height</td>
                                 <td>@pokemon.Weight</td>
                                 <td><a asp-page="EditPokemonItem" asp-route-id="@pokemon.PokemonID" class="btn btn-primary">Edit</a></td>
@@ -66,4 +64,3 @@
         </form>
     </div>
 </section>
-
