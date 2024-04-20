@@ -34,14 +34,16 @@ namespace MyPokeDexWeb.Pages
             // Method to handle POST requests
             public void OnPost()
             {
-                
-                    
-                
+
+           
+
             }
 
-            
-            // Method to populate all Pokémon items
-            private void PopulateAllPokemon()
+        
+
+
+        // Method to populate all Pokémon items
+        private void PopulateAllPokemon()
             {
                 using (SqlConnection conn = new SqlConnection(SecurityHelper.GetDBConnectionString()))
                 {

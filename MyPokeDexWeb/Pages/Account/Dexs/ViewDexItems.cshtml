@@ -4,6 +4,21 @@
     Layout = HttpContext.User.Identity.IsAuthenticated ? "_Layout -Authenticated" : "_Layout";
 }
 
+
+
+<style>
+    .btn-primary {
+        background-color: red;
+        border: none;
+    }
+
+        .btn-primary:hover {
+            background-color: #990000;
+        }
+
+
+
+</style>
 <section>
     <div class="container py-5">
         <form method="post" class="form-group">
