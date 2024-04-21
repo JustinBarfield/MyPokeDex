@@ -68,7 +68,7 @@ namespace MyPokeDexWeb.Pages
                             item.ImageURL = reader.GetString(5);
                             item.RegionID = reader.GetInt32(6);
                             item.PokemonRegionID = reader.GetString(7); // Assign region name
-                            item.PokemonTypeName = reader.GetString(11); // Assign type name here
+                            item.PokemonTypeID = reader.GetString(11); // Assign type name here
                             item.Height = reader.GetString(8);
                             item.Weight = reader.GetString(9);
                             item.Audio = reader.GetString(10);

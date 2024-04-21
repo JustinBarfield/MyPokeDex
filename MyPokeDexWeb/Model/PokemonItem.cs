@@ -18,9 +18,9 @@ namespace MyPokeDexWeb.Model
 		[Display(Name = "Type Name")]
 		public int TypeName { get; set; }
 
-        public string PokemonRegionID { get; set; }
+        public string? PokemonRegionID { get; set; }
 
-        public string PokemonTypeName { get; set; }
+        public string? PokemonTypeID { get; set; }
 
         [Required]
         [Display(Name = "State Total")]
