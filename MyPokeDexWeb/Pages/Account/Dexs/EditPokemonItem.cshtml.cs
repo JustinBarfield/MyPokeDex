@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -8,7 +9,7 @@ using static MyPokeDexWeb.Pages.Account.Dexs.ViewDexItemsModel;
 
 namespace MyPokeDexWeb.Pages.Account.Dexs
 {
-
+    [Authorize]
     [BindProperties]
     public class EditPokemonItemModel : PageModel
     {
@@ -20,16 +21,11 @@ namespace MyPokeDexWeb.Pages.Account.Dexs
 
 
         //checkbox stuff
+        
         public List<CategoryInfo> categories { get; set; } = new List<CategoryInfo>();
-        public List<int> SelectedPokemonID { get; set; }
+        public List<int> SelectedCategoryIDs { get; set; }
 
-        public class CategoryInfo
-        {
-            public int PokemonID { get; set; }
-            public string PokemonName { get; set; }
-            public bool isSelected { get; set; }
-
-        }
+      
 
         public void OnGet(int id)
         {
@@ -55,7 +51,7 @@ namespace MyPokeDexWeb.Pages.Account.Dexs
                     while (reader.Read())
                     {
                         CategoryInfo item = new CategoryInfo();
-                        item.CategoryID = reader.GetInt32(0);
+                        item.CategoryId = reader.GetInt32(0);
                         item.CategoryName = reader.GetString(1);
                         item.isSelected = false;
                         categories.Add(item);
@@ -66,7 +62,11 @@ namespace MyPokeDexWeb.Pages.Account.Dexs
 
         public IActionResult OnPost(int id)
         {
-			if (ModelState.IsValid)
+            PopluateDexItem(id);
+            PopulateRegionDDL();
+            PopulateTypeDDL();
+            PopulateCategoryList();
+            if (ModelState.IsValid)
 			{
 				using (SqlConnection conn = new SqlConnection(SecurityHelper.GetDBConnectionString()))
 				{
@@ -172,5 +172,12 @@ namespace MyPokeDexWeb.Pages.Account.Dexs
 
             }
         }
+    }
+    public class CategoryInfo
+    {
+        public int CategoryId { get; set; }
+        public string CategoryName { get; set; }
+        public bool isSelected { get; set; }
+
     }
 }
