@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Data.SqlClient;
 using MyPokedexBusiness;
 using MyPokeDexWeb.Model;
+using static MyPokeDexWeb.Pages.Account.Dexs.ViewDexItemsModel;
 
 namespace MyPokeDexWeb.Pages.Account.Dexs
 {
@@ -18,12 +19,49 @@ namespace MyPokeDexWeb.Pages.Account.Dexs
         public List<SelectListItem> Type { get; set; } = new List<SelectListItem>();
 
 
+        //checkbox stuff
+        public List<CategoryInfo> categories { get; set; } = new List<CategoryInfo>();
+        public List<int> SelectedPokemonID { get; set; }
+
+        public class CategoryInfo
+        {
+            public int PokemonID { get; set; }
+            public string PokemonName { get; set; }
+            public bool isSelected { get; set; }
+
+        }
+
         public void OnGet(int id)
         {
             PopluateDexItem(id);
             PopulateRegionDDL();
             PopulateTypeDDL();
+            PopulateCategoryList();
 
+        }
+
+        private void PopulateCategoryList()
+        {
+            using (SqlConnection conn = new SqlConnection(SecurityHelper.GetDBConnectionString()))
+            {
+
+                string cmdText = ("SELECT CategoryID, CategoryName FROM Category");
+                SqlCommand cmd = new SqlCommand(cmdText, conn);
+                conn.Open();
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        CategoryInfo item = new CategoryInfo();
+                        item.CategoryID = reader.GetInt32(0);
+                        item.CategoryName = reader.GetString(1);
+                        item.isSelected = false;
+                        categories.Add(item);
+                    }
+                }
+            }
         }
 
         public IActionResult OnPost(int id)
