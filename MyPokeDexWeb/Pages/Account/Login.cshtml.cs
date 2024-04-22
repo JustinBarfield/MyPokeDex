@@ -1,6 +1,7 @@
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Data.SqlClient;
@@ -9,8 +10,10 @@ using MyPokeDexWeb.Model;
 
 namespace MyPokeDexWeb.Pages
 {
+    
     public class LoginModel : PageModel
     {
+        
         [BindProperty]
 		public Login LoginUser { get; set; }
 		public void OnGet()
@@ -77,8 +80,9 @@ namespace MyPokeDexWeb.Pages
                             Claim emailClaim = new Claim(ClaimTypes.Email, LoginUser.Email);
                             Claim nameClaim = new Claim(ClaimTypes.Name, name);
                             Claim roleClaim = new Claim(ClaimTypes.Role, roleName);
+                            Claim IDClaim = new Claim(ClaimTypes.Actor, personID.ToString());
 
-                            List<Claim> claims = new List<Claim> { emailClaim, nameClaim, roleClaim }; 
+                            List<Claim> claims = new List<Claim> { emailClaim, nameClaim, roleClaim, IDClaim }; 
 
                             //2. add the list of claims to a claims Identity
 

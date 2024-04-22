@@ -1,0 +1,6 @@
+﻿@page
+@model MyPokeDexWeb.Pages.Account.AccessDeniedModel
+@{
+	Layout = HttpContext.User.Identity.IsAuthenticated ? "_Layout -Authenticated" : "_Layout";
+}
+<p>Access Denied go back to home or view pokemon</p>
