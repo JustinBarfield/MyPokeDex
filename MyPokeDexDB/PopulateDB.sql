@@ -6,7 +6,7 @@ INSERT [dbo].[Role] ([RoleID], [RoleName]) VALUES (2, N'User')
 GO
 SET IDENTITY_INSERT [dbo].[Person] ON 
 GO
-INSERT [dbo].[Person] ([PersonID], [FirstName], [LastName], [Email], [Password], [RoleID], [Phone], [LastLoginTime]) VALUES (4, N'Justin', N'Barfield', N'justinbarfield02@gmail.com', N'$2a$13$WMYtvHkj1GLuO/wMiWVNhe8Oj5.Jztb6cLBVGbOw5zjUHVTznZjjO', 1, N'8178569902', CAST(N'2024-04-20' AS Date))
+INSERT [dbo].[Person] ([PersonID], [FirstName], [LastName], [Email], [Password], [RoleID], [Phone], [LastLoginTime]) VALUES (4, N'Justin', N'Barfield', N'justinbarfield02@gmail.com', N'$2a$13$WMYtvHkj1GLuO/wMiWVNhe8Oj5.Jztb6cLBVGbOw5zjUHVTznZjjO', 1, N'8178569902', CAST(N'2024-04-21' AS Date))
 GO
 INSERT [dbo].[Person] ([PersonID], [FirstName], [LastName], [Email], [Password], [RoleID], [Phone], [LastLoginTime]) VALUES (1002, N'demo', N'demo', N'demo@gmail.com', N'$2a$13$eBAEUKM4KKeGqW82q3LOOO4.A9X3kOUe1m9JkOYvEYKK1iMSMgWPy', 2, N'12345', CAST(N'2024-04-15' AS Date))
 GO
@@ -95,4 +95,12 @@ GO
 INSERT [dbo].[Pokemon] ([PokemonID], [Dex Number], [Name], [TypeID], [State Total], [image URL], [RegionID], [Height], [Weight], [Audio]) VALUES (5151, 6969, N'asd', 1, 2165, N'asdf', 1, N'516', N'1651', N'asdf')
 GO
 INSERT [dbo].[Pokemon] ([PokemonID], [Dex Number], [Name], [TypeID], [State Total], [image URL], [RegionID], [Height], [Weight], [Audio]) VALUES (61651, 651, N'test123', 1, 516651, N'afds', 1, N'651', N'5665', N'asdf')
+GO
+INSERT [dbo].[Pokemon] ([PokemonID], [Dex Number], [Name], [TypeID], [State Total], [image URL], [RegionID], [Height], [Weight], [Audio]) VALUES (515165465, 6969, N'afsd', 15, 6969, N'adsf', 14, N'545', N'515', N'afsas')
+GO
+INSERT [dbo].[Category] ([CategoryID], [CategoryName]) VALUES (1, N'MyPokeDex')
+GO
+INSERT [dbo].[Category] ([CategoryID], [CategoryName]) VALUES (2, N'Team A')
+GO
+INSERT [dbo].[Category] ([CategoryID], [CategoryName]) VALUES (3, N'Team B')
 GO
