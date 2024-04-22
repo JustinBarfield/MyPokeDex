@@ -135,6 +135,14 @@
                                 </div>
 
 
+                                @foreach (CategoryInfo category in Model.categories)
+                                {
+                                    <input type="checkbox" name="SelectedCategoryIDs"  value="@category.CategoryId" checked="@category.isSelected" />
+                                    <label>@category.CategoryName</label>
+
+                                    
+                                }
+
 
                                 <div class="row m-2 justify-content-center">
                                     <div class="col-6">

@@ -1,4 +1,5 @@
 ﻿@page
+@using static MyPokeDexWeb.Pages.Account.Dexs.ViewDexItemsModel
 @model MyPokeDexWeb.Pages.Account.Dexs.ViewDexItemsModel
 @{
     Layout = HttpContext.User.Identity.IsAuthenticated ? "_Layout -Authenticated" : "_Layout";
@@ -65,7 +66,7 @@
                                 <td>@pokemon.PokemonID</td>
                                 <td>@pokemon.DexNumber</td>
                                 <td>@pokemon.Name</td>
-                                <td>@pokemon.PokemonTypeName</td> <!-- Display type name here -->
+                                <td>@pokemon.PokemonTypeID</td> <!-- Display type name here -->
                                 <td>@pokemon.StateTotal</td>
                                 <td>@pokemon.PokemonRegionID</td> <!-- Display region name here -->
                                 <td>@pokemon.Height</td>
@@ -73,6 +74,10 @@
                                 <td><a asp-page="EditPokemonItem" asp-route-id="@pokemon.PokemonID" class="btn btn-primary">Edit</a></td>
                             </tr>
                         }
+
+                       
+
+                
                     </tbody>
                 </table>
             </div>

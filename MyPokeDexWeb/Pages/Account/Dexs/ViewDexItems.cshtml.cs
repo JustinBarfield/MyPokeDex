@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -8,6 +9,7 @@ using System.Collections.Generic;
 
 namespace MyPokeDexWeb.Pages.Account.Dexs
 {
+    [Authorize]
     [BindProperties]
     public class ViewDexItemsModel : PageModel
     {
@@ -23,15 +25,23 @@ namespace MyPokeDexWeb.Pages.Account.Dexs
 
         public string PokemonRegionID { get; set; }
 
+        
+
+
+
+
         // Method to handle GET requests
         public void OnGet()
         {
             PopulateRegionDDL();
             PopulateTypeDDL();
+            
         }
 
-        // Method to handle POST requests
-        public void OnPost()
+		
+
+		// Method to handle POST requests
+		public void OnPost()
         {
             // Check if both RegionID and TypeID are selected
             if (SelectedRegionID != 0 && SelectedTypeID != 0)
@@ -57,6 +67,9 @@ namespace MyPokeDexWeb.Pages.Account.Dexs
             PopulateRegionDDL();
             PopulateTypeDDL();
         }
+
+
+       
 
         // Method to populate Pokémon items based on the selected region and type
         private void PopulatDexItemByRegionAndType(int regionID, int typeID)
@@ -87,7 +100,7 @@ namespace MyPokeDexWeb.Pages.Account.Dexs
                         item.ImageURL = reader.GetString(5);
                         item.RegionID = reader.GetInt32(6);
                         item.PokemonRegionID = reader.GetString(7);
-                        item.PokemonTypeName = reader.GetString(11); // Assign type name here
+                        item.PokemonTypeID = reader.GetString(11); // Assign type name here
                         item.Height = reader.GetString(8);
                         item.Weight = reader.GetString(9);
                         item.Audio = reader.GetString(10);
@@ -125,7 +138,7 @@ namespace MyPokeDexWeb.Pages.Account.Dexs
                         item.ImageURL = reader.GetString(5);
                         item.RegionID = reader.GetInt32(6);
                         item.PokemonRegionID = reader.GetString(7); // Assign region name
-                        item.PokemonTypeName = reader.GetString(11); // Assign type name here
+                        item.PokemonTypeID = reader.GetString(11); // Assign type name here
                         item.Height = reader.GetString(8);
                         item.Weight = reader.GetString(9);
                         item.Audio = reader.GetString(10);
@@ -163,7 +176,7 @@ namespace MyPokeDexWeb.Pages.Account.Dexs
                         item.ImageURL = reader.GetString(5);
                         item.RegionID = reader.GetInt32(6);
                         item.PokemonRegionID = reader.GetString(7); // Assign region name
-                        item.PokemonTypeName = reader.GetString(11); // Assign type name here
+                        item.PokemonTypeID = reader.GetString(11); // Assign type name here
                         item.Height = reader.GetString(8);
                         item.Weight = reader.GetString(9);
                         item.Audio = reader.GetString(10);
@@ -199,7 +212,7 @@ namespace MyPokeDexWeb.Pages.Account.Dexs
                         item.ImageURL = reader.GetString(5);
                         item.RegionID = reader.GetInt32(6);
                         item.PokemonRegionID = reader.GetString(7); // Assign region name
-                        item.PokemonTypeName = reader.GetString(11); // Assign type name here
+                        item.PokemonTypeID   = reader.GetString(11); // Assign type name here
                         item.Height = reader.GetString(8);
                         item.Weight = reader.GetString(9);
                         item.Audio = reader.GetString(10);
