@@ -1,3 +1,5 @@
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Authorization.Infrastructure;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -7,6 +9,7 @@ using MyPokeDexWeb.Model;
 
 namespace MyPokeDexWeb.Pages.Account.Dexs
 {
+	[Authorize(Roles="Admin")]
     [BindProperties]
     public class AddPokemonModel : PageModel
     {
