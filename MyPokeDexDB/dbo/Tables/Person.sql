@@ -9,8 +9,10 @@
     [LastLoginTime] DATE          NULL,
     CONSTRAINT [PK_User] PRIMARY KEY CLUSTERED ([PersonID] ASC),
     CONSTRAINT [FK_User_User] FOREIGN KEY ([PersonID]) REFERENCES [dbo].[Person] ([PersonID]),
-    CONSTRAINT [FK_User_User1] FOREIGN KEY ([RoleID]) REFERENCES [dbo].[Role] ([RoleID])
+    CONSTRAINT [FK_User_User1] FOREIGN KEY ([RoleID]) REFERENCES [dbo].[Roles] ([RoleID])
 );
+
+
 
 
 

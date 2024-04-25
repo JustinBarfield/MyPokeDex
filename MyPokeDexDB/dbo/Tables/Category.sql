@@ -1,6 +1,8 @@
 ﻿CREATE TABLE [dbo].[Category] (
-    [CategoryID]   INT  NOT NULL,
-    [CategoryName] TEXT NOT NULL,
-    CONSTRAINT [PK_Category] PRIMARY KEY CLUSTERED ([CategoryID] ASC)
+    [CategoryID]   INT        NOT NULL,
+    [CategoryName] TEXT       NOT NULL,
+    [PokemonId]    NCHAR (10) NOT NULL
 );
+
+
 

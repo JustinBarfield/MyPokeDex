@@ -16,17 +16,45 @@ namespace MyPokeDexWeb.Pages.Account.Dexs
         public List<SelectListItem> RegionID { get; set; } = new List<SelectListItem>();
 		public List<SelectListItem> Type { get; set; } = new List<SelectListItem>();
 
+		//checkbox stuff
+
+		public List<CategoryInfo> categories { get; set; } = new List<CategoryInfo>();
+		public List<int> SelectedCategoryIDs { get; set; }
+
 		public void OnGet()
         {
             PopulateRegionDDL();
             PopulateTypeDDL();
+			PopulateCategoryList();
 
+		}
+		private void PopulateCategoryList()
+		{
+			using (SqlConnection conn = new SqlConnection(SecurityHelper.GetDBConnectionString()))
+			{
 
-        }
+				string cmdText = ("SELECT CategoryID, CategoryName FROM Category");
+				SqlCommand cmd = new SqlCommand(cmdText, conn);
+				conn.Open();
+				SqlDataReader reader = cmd.ExecuteReader();
+
+				if (reader.HasRows)
+				{
+					while (reader.Read())
+					{
+						CategoryInfo item = new CategoryInfo();
+						item.CategoryId = reader.GetInt32(0);
+						item.CategoryName = reader.GetString(1);
+						item.isSelected = false;
+						categories.Add(item);
+					}
+				}
+			}
+		}
 
 		public IActionResult OnPost()
 		{
-
+			PopulateCategoryList();
 			PopulateRegionDDL();
 			PopulateTypeDDL();
 

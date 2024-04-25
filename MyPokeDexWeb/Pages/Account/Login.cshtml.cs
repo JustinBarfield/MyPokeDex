@@ -51,7 +51,7 @@ namespace MyPokeDexWeb.Pages
             using (SqlConnection conn = new SqlConnection(SecurityHelper.GetDBConnectionString()))
             {
                 string cmdText = "SELECT Password, PersonID,FirstName, LastName Email FROM Person " +"" +
-                    " INNER JOIN [Role] ON Person.RoleID = [ROLE].RoleID WHERE Email=@email"; 
+                    " INNER JOIN [Roles] ON Person.RoleID = [ROLEs].RoleID WHERE Email=@email"; 
                 SqlCommand cmd = new SqlCommand(cmdText, conn);
                 // Add the @email parameter
                 cmd.Parameters.AddWithValue("@email", LoginUser.Email);

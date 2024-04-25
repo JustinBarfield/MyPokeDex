@@ -127,10 +127,8 @@
 
                                 @foreach (CategoryInfo category in Model.categories)
                                 {
-                                    <input type="checkbox" name="SelectedCategoryIDs"  value="@category.CategoryId" checked="@category.isSelected" />
+                                    <input type="checkbox" name="SelectedCategoryIDs" value="@category.CategoryId" checked="@category.isSelected" />
                                     <label>@category.CategoryName</label>
-
-                                    
                                 }
 
 

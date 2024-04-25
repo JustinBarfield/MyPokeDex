@@ -64,11 +64,11 @@
   <ItemGroup>
     <Build Include="dbo\Tables\Pokemon.sql" />
     <Build Include="dbo\Tables\UserPokemon.sql" />
-    <Build Include="dbo\Tables\Role.sql" />
     <Build Include="dbo\Tables\Person.sql" />
     <Build Include="dbo\Tables\Type.sql" />
     <Build Include="dbo\Tables\Region.sql" />
     <Build Include="dbo\Tables\Category.sql" />
+    <Build Include="dbo\Tables\Roles.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="PopulateDB.sql" />
