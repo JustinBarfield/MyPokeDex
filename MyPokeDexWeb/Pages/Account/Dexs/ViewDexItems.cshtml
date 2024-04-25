@@ -4,7 +4,26 @@
 @{
     Layout = HttpContext.User.Identity.IsAuthenticated ? "_Layout -Authenticated" : "_Layout";
 }
+<style>
+    .table {
+        border-collapse: collapse;
+        width: 100%;
+        border-style: groove;
+    }
 
+    th, td {
+        text-align: left;
+        padding: 8px;
+    }
+
+    tr:nth-child(even) {
+        background-color: Lightgrey;
+    }
+
+
+
+
+</style>
 
 
 <section>
