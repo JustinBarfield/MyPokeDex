@@ -14,61 +14,51 @@ namespace MyPokeDexWeb.Pages.Account
 
         public void OnGet()
         {
-            // Initialize if needed
+            // Initialize any additional resources if necessary
         }
 
         public IActionResult OnPost()
         {
-			if (ModelState.IsValid)
+            if (ModelState.IsValid)
             {
-                //Make sure the email is not already in the table
-
+                // Check if email already exists in the table
                 if (EmailDNE(NewPerson.Email))
                 {
+                    // Register user and redirect to the login page
                     RegisterUser();
                     return RedirectToPage("Login");
-
                 }
                 else
                 {
-                    ModelState.AddModelError("Register Error", "The email already exists. Try a different one");
+                    // Add error if email already exists
+                    ModelState.AddModelError("Email", "The email already exists. Please try a different one.");
                     return Page();
                 }
-
-                // Create database connection
-                string connectionString = SecurityHelper.GetDBConnectionString();
-
-               
-
-                // Redirect to Profile page after successful registration
-                return RedirectToPage("Login");
             }
-
-            // Return page if model state is not valid
+            // Return the same page with validation errors if the model state is not valid
             return Page();
         }
 
         private void RegisterUser()
         {
-            using(SqlConnection conn = new SqlConnection(SecurityHelper.GetDBConnectionString()))
+            using (SqlConnection conn = new SqlConnection(SecurityHelper.GetDBConnectionString()))
             {
-                string cmdText = "INSERT INTO Person(FirstName, LastName, Email, Password, Phone, RoleID) " +
-                                    "VALUES (@firstName, @lastName, @email, @password, @telephone, @roleID)";
+                string cmdText = "INSERT INTO Person (FirstName, LastName, Email, Password, Phone, RoleID) " +
+                                 "VALUES (@firstName, @lastName, @Email, @Password, @Phone, @RoleID)";
 
                 SqlCommand cmd = new SqlCommand(cmdText, conn);
-                    // Add parameters to SQL command
-                    cmd.Parameters.AddWithValue("@firstName", NewPerson.FirstName);
-                    cmd.Parameters.AddWithValue("@lastName", NewPerson.LastName);
-                    cmd.Parameters.AddWithValue("@password", SecurityHelper.GeneratePasswordHash(NewPerson.Password));
-                    cmd.Parameters.AddWithValue("@email", NewPerson.Email);
-                    cmd.Parameters.AddWithValue("@telephone", NewPerson.Phone);
-                    cmd.Parameters.AddWithValue("@roleID", 2); // Assuming a default role
 
+                // Use parameterized queries to add parameters safely
+                cmd.Parameters.AddWithValue("@firstName", NewPerson.FirstName);
+                cmd.Parameters.AddWithValue("@lastName", NewPerson.LastName);
+                cmd.Parameters.AddWithValue("@Email", NewPerson.Email);
+                cmd.Parameters.AddWithValue("@Password", SecurityHelper.GeneratePasswordHash(NewPerson.Password));
+                cmd.Parameters.AddWithValue("@Phone", NewPerson.Phone);
+                cmd.Parameters.AddWithValue("@RoleID", 2); // Default role ID
 
-                    // Open connection and execute SQL command
-                    conn.Open();
-                    cmd.ExecuteNonQuery();
-                
+                // Open connection and execute SQL command
+                conn.Open();
+                cmd.ExecuteNonQuery();
             }
         }
 

@@ -91,7 +91,7 @@
 									<label asp-for="NewPerson.Password" class="form-label"></label>
 								</div>
 								<div class="col-10">
-									<input asp-for="NewPerson.Password" type="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{10,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 10 or more characters"  class="form-control" />
+									<input asp-for="NewPerson.Password" type="password"  />
 									<span asp-validation-for="NewPerson.Password" class="text-danger"></span>
 
 								</div>
