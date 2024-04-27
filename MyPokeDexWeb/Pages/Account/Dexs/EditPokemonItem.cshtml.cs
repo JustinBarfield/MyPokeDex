@@ -19,53 +19,112 @@ namespace MyPokeDexWeb.Pages.Account.Dexs
         public List<SelectListItem> RegionID { get; set; } = new List<SelectListItem>();
         public List<SelectListItem> Type { get; set; } = new List<SelectListItem>();
 
-
-        //checkbox stuff
-        
         public List<CategoryInfo> categories { get; set; } = new List<CategoryInfo>();
-        public List<int> SelectedCategoryIDs { get; set; }
+
+        public List<int> selectedCategoryIds { get; set; }
+       
 
       
 
         public void OnGet(int id)
         {
+            int pokemonId = id;
+            PoplatePokedexInfo(pokemonId);
+            PopulateCategoryList();
+            MarkCategorySelections(pokemonId);
             PopluateDexItem(id);
             PopulateRegionDDL();
             PopulateTypeDDL();
-            PopulateCategoryList();
+            
 
         }
 
-        private void PopulateCategoryList()
+        private void MarkCategorySelections(int pokemonId)
         {
+			using (SqlConnection conn = new SqlConnection(SecurityHelper.GetDBConnectionString()))
+			{
+				string cmdText = "SELECT CategoryId FROM Category WHERE PokemonId = @PokemonId";
+				SqlCommand cmd = new SqlCommand(cmdText, conn);
+				cmd.Parameters.AddWithValue("PokemonId", pokemonId);
+				conn.Open();
+				SqlDataReader reader = cmd.ExecuteReader();
+				if (reader.HasRows)
+				{
+					int categoryId = -1;
+					while (reader.Read())
+					{
+						foreach (CategoryInfo category in categories)
+						{
+							categoryId = reader.GetInt32(0);
+							if (categoryId == category.CategoryId)
+							{
+								category.isSelected = true;
+								break;
+							}
+						}
+					}
+				}
+			}
+		}
+
+		private void PoplatePokedexInfo(int pokemonId)
+		{
             using (SqlConnection conn = new SqlConnection(SecurityHelper.GetDBConnectionString()))
             {
-
-                string cmdText = ("SELECT CategoryID, CategoryName FROM Category");
+                string cmdText = "SELECT CategoryId FROM Category WHERE PokemonId = @PokemonId";
                 SqlCommand cmd = new SqlCommand(cmdText, conn);
+                cmd.Parameters.AddWithValue("PokemonId", pokemonId);
                 conn.Open();
                 SqlDataReader reader = cmd.ExecuteReader();
-
-                if (reader.HasRows)
+                if(reader.HasRows)
                 {
+                    int categoryId = -1;
                     while (reader.Read())
                     {
-                        CategoryInfo item = new CategoryInfo();
-                        item.CategoryId = reader.GetInt32(0);
-                        item.CategoryName = reader.GetString(1);
-                        item.isSelected = false;
-                        categories.Add(item);
+                        foreach(CategoryInfo category in categories)
+                        {
+                            categoryId = reader.GetInt32(0);
+                            if(categoryId == category.CategoryId)
+                            {
+                                category.isSelected = true;
+                                break;
+                            }
+                        }
                     }
                 }
             }
-        }
+		}
 
-        public IActionResult OnPost(int id)
+		private void PopulateCategoryList()
+		{
+			using (SqlConnection conn = new SqlConnection(SecurityHelper.GetDBConnectionString()))
+			{
+
+				string cmdText = ("SELECT CategoryID, CategoryName FROM Category");
+				SqlCommand cmd = new SqlCommand(cmdText, conn);
+				conn.Open();
+				SqlDataReader reader = cmd.ExecuteReader();
+
+				if (reader.HasRows)
+				{
+					while (reader.Read())
+					{
+						CategoryInfo item = new CategoryInfo();
+						item.CategoryId = reader.GetInt32(0);
+						item.CategoryName = reader.GetString(1);
+						item.isSelected = false;
+						categories.Add(item);
+					}
+				}
+			}
+		}
+
+		public IActionResult OnPost(int id)
         {
             PopluateDexItem(id);
             PopulateRegionDDL();
             PopulateTypeDDL();
-            PopulateCategoryList();
+            
             if (ModelState.IsValid)
 			{
 				using (SqlConnection conn = new SqlConnection(SecurityHelper.GetDBConnectionString()))

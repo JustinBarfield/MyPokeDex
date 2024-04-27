@@ -1,0 +1,68 @@
+﻿@page
+@model MyPokeDexWeb.Pages.Account.MyPokedexModel
+@{
+    
+}
+
+<section>
+    <div class="container py-5">
+        <form method="post" class="form-group">
+            <div class="row m-2">
+               
+                
+
+                <div class="row m-2">
+                    <div class="col-2">
+                        <label class="form-label">Type</label>
+                    </div>
+                    <div class="col-8">
+                        <select asp-for="SelectedCategoryID" asp-items="Model.CategoryList"></select>
+                    </div>
+                </div>
+
+
+                <div class="col-2">
+                    <button type="submit" class="btn btn-primary">Display</button>
+                </div>
+            </div>
+
+            <div class="table-responsive mt-4">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Pokemon ID</th>
+                            <th>Dex Number</th>
+                            <th>Name</th>
+                            <th>Type</th>
+                            <th>Type Name</th>
+                            <th>Total State</th>
+                            <th>Region</th>
+                            <th>Region Name</th>
+                            <th>Height</th>
+                            <th>Weight</th>
+                            <th>Edit</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var pokemon in Model.PokemonItems)
+                        {
+                            <tr>
+                                <td>@pokemon.PokemonID</td>
+                                <td>@pokemon.DexNumber</td>
+                                <td>@pokemon.Name</td>
+                                <td>@pokemon.TypeID</td>
+                                <td>@pokemon.TypeName</td>
+                                <td>@pokemon.StateTotal</td>
+                                <td>@pokemon.RegionID</td>
+                                <td>@pokemon.RegionName</td>
+                                <td>@pokemon.Height</td>
+                                <td>@pokemon.Weight</td>
+                                <td><a asp-page="EditPokemonItem" asp-route-id="@pokemon.PokemonID" class="btn btn-primary">Edit</a></td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </form>
+    </div>
+</section>

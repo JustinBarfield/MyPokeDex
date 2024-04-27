@@ -50,70 +50,67 @@ namespace MyPokeDexWeb.Pages
         {
             using (SqlConnection conn = new SqlConnection(SecurityHelper.GetDBConnectionString()))
             {
-                string cmdText = "SELECT Password, PersonID,FirstName, LastName Email FROM Person " +"" +
-                    " INNER JOIN [Role] ON Person.RoleID = [ROLE].RoleID WHERE Email=@email"; 
+                string cmdText = "SELECT Password, PersonID, FirstName, LastName, Email, Roles.RoleName " +
+                                 "FROM Person " +
+                                 "INNER JOIN Roles ON Person.RoleID = Roles.RoleID " +
+                                 "WHERE Email = @Email";
                 SqlCommand cmd = new SqlCommand(cmdText, conn);
-                // Add the @email parameter
-                cmd.Parameters.AddWithValue("@email", LoginUser.Email);
-                conn.Open();
-                SqlDataReader reader = cmd.ExecuteReader();
-                if (reader.HasRows)
+                cmd.Parameters.AddWithValue("@Email", LoginUser.Email);
+
+                try
                 {
-                    reader.Read();
-                    if (!reader.IsDBNull(0))//the 0 is to select the correct index
+                    conn.Open();
+                    using (SqlDataReader reader = cmd.ExecuteReader())
                     {
-                        string passwordHash = reader.GetString(0);
-                        if (SecurityHelper.VerifyPassword(LoginUser.Password, passwordHash))
+                        if (reader.Read())
                         {
-                            //get the PersonID and use it to update the Person record
-                            int personID = reader.GetInt32(1);
-                            UpdatePersonLoginTime(personID);
+                            // Retrieve the stored password hash and verify it with the provided password
+                            string passwordHash = reader.GetString(0);
+                            if (SecurityHelper.VerifyPassword(LoginUser.Password, passwordHash))
+                            {
+                                // Retrieve the PersonID
+                                int personID = reader.GetInt32(1);
+                                UpdatePersonLoginTime(personID);
 
-                            //create a principle
-                            string name = reader.GetString(2);
-                            string roleName = reader.GetString(3);
+                                // Retrieve the necessary data for claims
+                                string name = reader.GetString(2);
+                                string roleName = reader.GetString(5);
 
-                            //create list of claims
-                            Claim emailClaim = new Claim(ClaimTypes.Email, LoginUser.Email);
-                            Claim nameClaim = new Claim(ClaimTypes.Name, name);
-                            Claim roleClaim = new Claim(ClaimTypes.Role, roleName);
-
-                            List<Claim> claims = new List<Claim> { emailClaim, nameClaim, roleClaim }; 
-
-                            //2. add the list of claims to a claims Identity
-
-                            ClaimsIdentity Identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
-
-                            //3. add the identity to a ClaimsPrinciple
-                            ClaimsPrincipal principle = new ClaimsPrincipal(Identity);
-
-                            //4. call HTTPContext.SignInAsync() method to encrypt the principal
-                            HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principle);
-
-
-
-
-
-
-                            return true;
-                        }
-                        else
+                                // Create claims list
+                                var claims = new List<Claim>
                         {
-                            return false;
+                            new Claim(ClaimTypes.Email, LoginUser.Email),
+                            new Claim(ClaimTypes.Name, name),
+                            new Claim(ClaimTypes.Role, roleName)
+                        };
+
+                                // Create a ClaimsIdentity and add it to a ClaimsPrincipal
+                                ClaimsIdentity identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+                                ClaimsPrincipal principal = new ClaimsPrincipal(identity);
+
+                                // Sign in using the principal
+                                HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal);
+
+                                return true;
+                            }
                         }
-                    }
-                    else
-                    {
-                        return false;
                     }
                 }
-                else
+                catch (Exception ex)
                 {
+                    // Handle any exceptions that may occur
+                    // For example: log the exception details for debugging
+                    Console.Error.WriteLine($"Error in ValidateCredentials: {ex.Message}");
                     return false;
                 }
-                conn.Close();
+                finally
+                {
+                    conn.Close();
+                }
             }
+            return false;
         }
+
 
 
         private void UpdatePersonLoginTime(int personID)

@@ -35,7 +35,8 @@ namespace MyPokeDexWeb.Pages.Account.Dexs
         {
             PopulateRegionDDL();
             PopulateTypeDDL();
-            
+            PopulateAllPokemon();
+
         }
 
 		
