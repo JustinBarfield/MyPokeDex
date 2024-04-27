@@ -6,19 +6,6 @@
 }
 
 <style>
-    .img-container {
-        border: 1px solid #ccc; /* Add a border around the image */
-        padding: 10px; /* Add some padding around the image */
-        text-align: center; /* Center the image horizontally */
-        display: flex; /* Use flexbox to center the image vertically */
-        justify-content: center; /* Center the image vertically */
-        align-items: center; /* Center the image vertically */
-    }
-
-        .img-container img {
-            max-width: 100%; /* Ensure the image inside the container scales down if necessary */
-        }
-
 
 
     .table {
@@ -38,9 +25,9 @@
 </style>
 
 
-<section>
 
-    <div class="container py-5">
+<section class="container-fluid px-0">
+    <div class="row align-items-center">
         <div class="row">
             <div class="col-md-6">
                 <h2>Welcome to Your Pokédex!</h2>
@@ -49,15 +36,16 @@
             </div>
             <div class="col-md-6">
                 <div class="img-container">
-                    <img src="Graphics/pokedexImg.png" alt="Pokédex Image" class="img-fluid">
-
+                    <img src="images/PokeBall.png" alt="Pokédex Image" class="img-fluid">
                 </div>
             </div>
         </div>
     </div>
+</section>
+    
 
 
-
+<section>
     <div class="container py-5">
             <div class="table-responsive">
                 <table class="table">

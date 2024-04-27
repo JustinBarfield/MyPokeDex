@@ -4,7 +4,11 @@
     Layout = HttpContext.User.Identity.IsAuthenticated ? "_Layout -Authenticated" : "_Layout";
 }
 
-
+<style>
+    .custom-btn {
+        width: 100%;
+    }
+</style>
 
 <form method="post" class=" form-group">
     <section>
@@ -136,7 +140,10 @@
 
                                 <div class="row m-2 justify-content-center">
                                     <div class="col-6">
-                                        <button id="btnLogin" class="btn btn-primary btn-block">Update Pokemon</button>
+                                        <button id="btnUpdate" class="btn btn-primary btn-block custom-btn">Update Pokemon</button>
+                                    </div>
+                                    <div class="col-6">
+                                        <button id="btnCancel" class="btn btn-secondary btn-block custom-btn">Cancel</button>
                                     </div>
                                 </div>
                             </form>

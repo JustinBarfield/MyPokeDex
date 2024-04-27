@@ -21,7 +21,13 @@
     }
 
 
+    .custom-btn {
+        width: 100%;
+    }
 
+    #btnDel{
+        background-color: red;
+    }
 
 </style>
 
@@ -36,17 +42,23 @@
                 <div class="col-8">
                     <select asp-for="SelectedRegionID" asp-items="Model.RegionID"></select>
                 </div>
-                <div class="col-2">
-                    <button class="btn btn-primary" id="btnView">Display</button>
-                </div>
+                
             </div>
-
             <div class="row m-2">
                 <div class="col-2">
                     <label class="form-label">Type</label>
                 </div>
                 <div class="col-8">
                     <select asp-for="SelectedTypeID" asp-items="Model.TypeID"></select>
+                </div>
+            </div>
+
+            <div class="row m-2 justify-content-end">
+                <div class="col-2">
+                    <button class="btn btn-primary btn-block custom-btn" id="btnView">Display</button>
+                </div>
+                <div class="col-2">
+                    <button class="btn btn-primary btn-block custom-btn" id="btnDel">Delete</button>
                 </div>
             </div>
 
