@@ -1,4 +1,4 @@
-﻿USE [MyPokedex]
+﻿﻿USE [MyPokedex]
 GO
 INSERT [dbo].[Role] ([RoleID], [RoleName]) VALUES (1, N'Admin')
 GO
