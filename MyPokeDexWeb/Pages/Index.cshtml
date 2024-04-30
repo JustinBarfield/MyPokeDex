@@ -13,8 +13,13 @@
     
     }
 
-    h2{
+    h1{
         font-family:Pokemon;
+    }
+
+    p{
+        font-family: Pokemon;
+        font-weight:500;
     }
 
     .table {
@@ -31,23 +36,27 @@
     tr:nth-child(even) {
         background-color: Lightgrey;
     }
+
+    img{
+        max-width: 1px;
+        height:auto;
+    }
+
+    img-container{
+       max-width:20px;
+       hieght:auto;
+    }
+   
 </style>
 
 
 
-<section class="container-fluid px-0">
-    <div class="row align-items-center">
-        <div class="row">
-            <div class="col-md-6">
-                <h2>Welcome to Your Pokédex!</h2>
-                <p>Start your journey by exploring Pokémon from various regions and adding them to your personal Pokédex.</p>
-                <a class="nav-link text-blue" asp-area="" asp-page="/Account/Dexs/AddPokemon">Add Pokémon to Your Dex</a>
-            </div>
-            <div class="col-md-6">
-                <div class="img-container">
-                    <img src="/images/PokeBall.png" alt="Pokédex Image" class="img-fluid">
-                </div>
-            </div>
+<section class="container-fluid px-0 d-flex justify-content-center align-items-center">
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <h1>Welcome to Your Pokédex!</h1>
+            <p>Start your journey by exploring Pokémon from various regions and adding them to your personal Pokédex.</p>
+            <a class="nav-link text-blue" asp-area="" asp-page="/Account/Dexs/AddPokemon">Add Pokémon to Your Dex</a>
         </div>
     </div>
 </section>
