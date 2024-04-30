@@ -57,9 +57,7 @@
                 <div class="col-2">
                     <button class="btn btn-primary btn-block custom-btn" id="btnView">Display</button>
                 </div>
-                <div class="col-2">
-                    <button class="btn btn-primary btn-block custom-btn" id="btnDel">Delete</button>
-                </div>
+               
             </div>
 
             <div class="table-responsive">
@@ -90,11 +88,12 @@
                                 <td>@pokemon.Height</td>
                                 <td>@pokemon.Weight</td>
                                 <td><a asp-page="EditPokemonItem" asp-route-id="@pokemon.PokemonID" class="btn btn-primary">Edit</a></td>
+                                <td><a asp-page="DeletePokemon" asp-route-id="@pokemon.PokemonID" class="btn btn-danger">Delete</a></td>
                             </tr>
                         }
 
-                       
 
+                        
                 
                     </tbody>
                 </table>
