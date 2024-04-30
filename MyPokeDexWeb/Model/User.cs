@@ -18,6 +18,7 @@ namespace MyPokeDexWeb.Model
         [Required(ErrorMessage = "Password is required")]
         [StringLength(int.MaxValue, MinimumLength = 10, ErrorMessage = "Password must be at least 10 characters long.")]
         [Display(Name = "Password")]
+        [RegularExpression(@"^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{10,}$", ErrorMessage = "Password must contain at least one number, and a mix of upper-case and lower-case letters.")]
         public string Password { get; set; }
 
         [Required(ErrorMessage = "Email is required")]
