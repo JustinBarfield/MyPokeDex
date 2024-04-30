@@ -141,8 +141,7 @@
                                         <button id="btnUpdate" class="btn btn-primary btn-block custom-btn">Update Pokemon</button>
                                     </div>
                                     <div class="col-6">
-                                        <button id="btnCancel" class="btn btn-secondary btn-block custom-btn">Cancel</button>
-                                    </div>
+                                        <a asp-page="ViewDexItems"  class="btn btn-danger" onclick="return confirm('Are you sure you want to cancel?')">Cancel</a>
                                 </div>
                             </form>
                         </div>

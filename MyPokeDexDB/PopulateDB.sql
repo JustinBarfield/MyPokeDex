@@ -18,6 +18,8 @@ INSERT [dbo].[Person] ([PersonID], [FirstName], [LastName], [Email], [Password],
 GO
 INSERT [dbo].[Person] ([PersonID], [FirstName], [LastName], [Email], [Password], [RoleID], [Phone], [LastLoginTime]) VALUES (4003, N'Justin', N'Barfield', N'justinbarfield05@gmail.com', N'$2a$13$bRBfW7clfQvkPgiyDUCJf.q9CjtoW/5vR8BYR72tdqCDOelqI7PbO', 2, N'8178569902', CAST(N'2024-04-25' AS Date))
 GO
+INSERT [dbo].[Person] ([PersonID], [FirstName], [LastName], [Email], [Password], [RoleID], [Phone], [LastLoginTime]) VALUES (5002, N'Justin', N'Barfield', N'justinbarfield06@gmail.com', N'$2a$13$iSrIqLncaZs0O3bbjs/cGeJM0zvno3/WspbaHtf32beiMKEALMWZC', 2, N'8178569902', NULL)
+GO
 SET IDENTITY_INSERT [dbo].[Person] OFF
 GO
 INSERT [dbo].[Type] ([TypeID], [TypeName]) VALUES (0, N'Any')
@@ -90,25 +92,17 @@ INSERT [dbo].[Region] ([RegionID], [RegionName]) VALUES (15, N'Kyushu')
 GO
 INSERT [dbo].[Region] ([RegionID], [RegionName]) VALUES (16, N'Hokkaido')
 GO
-INSERT [dbo].[Pokemon] ([PokemonID], [Dex Number], [Name], [TypeID], [State Total], [image URL], [RegionID], [Height], [Weight], [Audio]) VALUES (1, 1, N'pokemon123', 1, 100, N'adf', 1, N'12', N'12', N'SDF')
+SET IDENTITY_INSERT [dbo].[Pokemon] ON 
 GO
-INSERT [dbo].[Pokemon] ([PokemonID], [Dex Number], [Name], [TypeID], [State Total], [image URL], [RegionID], [Height], [Weight], [Audio]) VALUES (2, 11, N'test', 1, 100, N'sadf', 2, N'5415', N'545f', N'afd')
+INSERT [dbo].[Pokemon] ([PokemonID], [Dex Number], [Name], [TypeID], [State Total], [image URL], [RegionID], [Height], [Weight], [Audio]) VALUES (1, 1, N'pokemon123', 1, 100, N'https://assets.pokemon.com/assets/cms2/img/pokedex/full//133.png', 1, N'12', N'12', N'SDF')
 GO
-INSERT [dbo].[Pokemon] ([PokemonID], [Dex Number], [Name], [TypeID], [State Total], [image URL], [RegionID], [Height], [Weight], [Audio]) VALUES (651, 651, N'asf', 1, 65, N'sadf', 1, N'9', N'651', N'asdf')
+INSERT [dbo].[Pokemon] ([PokemonID], [Dex Number], [Name], [TypeID], [State Total], [image URL], [RegionID], [Height], [Weight], [Audio]) VALUES (2, 11, N'test', 1, 100, N'https://www.google.com/imgres?q=pokemon&imgurl=https%3A%2F%2Fupload.wikimedia.org%2Fwikipedia%2Fcommons%2Fthumb%2F9%2F98%2FInternational_Pok%25C3%25A9mon_logo.svg%2F1200px-International_Pok%25C3%25A9mon_logo.svg.png&imgrefurl=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FPok%25C3%25A9mon&docid=VWc1sn0WEVMNkM&tbnid=6Mje8iNBjoua8M&vet=12ahUKEwjEr-zXw-qFAxUxJNAFHUN-BvIQM3oECA4QAA..i&w=1200&h=442&hcb=2&itg=1&ved=2ahUKEwjEr-zXw-qFAxUxJNAFHUN-BvIQM3oECA4QAA', 2, N'5415', N'545f', N'afd')
 GO
-INSERT [dbo].[Pokemon] ([PokemonID], [Dex Number], [Name], [TypeID], [State Total], [image URL], [RegionID], [Height], [Weight], [Audio]) VALUES (4545, 696955, N'asd', 1, 696951, N'adsf', 1, N'6511', N'5151', N'asdf')
+INSERT [dbo].[Pokemon] ([PokemonID], [Dex Number], [Name], [TypeID], [State Total], [image URL], [RegionID], [Height], [Weight], [Audio]) VALUES (3, 3, N'3', 3, 3, N'3', 3, N'3', N'3', N'3')
 GO
-INSERT [dbo].[Pokemon] ([PokemonID], [Dex Number], [Name], [TypeID], [State Total], [image URL], [RegionID], [Height], [Weight], [Audio]) VALUES (4654, 55555555, N'Demo5', 1, 55555555, N'asdf', 1, N'5555555', N'555555', N'five')
+INSERT [dbo].[Pokemon] ([PokemonID], [Dex Number], [Name], [TypeID], [State Total], [image URL], [RegionID], [Height], [Weight], [Audio]) VALUES (4, 4, N'4', 4, 4, N'4', 4, N'4', N'4', N'4')
 GO
-INSERT [dbo].[Pokemon] ([PokemonID], [Dex Number], [Name], [TypeID], [State Total], [image URL], [RegionID], [Height], [Weight], [Audio]) VALUES (5151, 6969, N'asd', 1, 2165, N'asdf', 1, N'516', N'1651', N'asdf')
-GO
-INSERT [dbo].[Pokemon] ([PokemonID], [Dex Number], [Name], [TypeID], [State Total], [image URL], [RegionID], [Height], [Weight], [Audio]) VALUES (12345, 12345, N'sdfg', 3, 12345, N'sdf', 15, N'12345', N'12345', N'sd')
-GO
-INSERT [dbo].[Pokemon] ([PokemonID], [Dex Number], [Name], [TypeID], [State Total], [image URL], [RegionID], [Height], [Weight], [Audio]) VALUES (61651, 651, N'test123', 1, 516651, N'afds', 1, N'651', N'5665', N'asdf')
-GO
-INSERT [dbo].[Pokemon] ([PokemonID], [Dex Number], [Name], [TypeID], [State Total], [image URL], [RegionID], [Height], [Weight], [Audio]) VALUES (515199, 2625988, N'test', 16, 595, N'asf', 0, N'5659', N'9595', N'adf')
-GO
-INSERT [dbo].[Pokemon] ([PokemonID], [Dex Number], [Name], [TypeID], [State Total], [image URL], [RegionID], [Height], [Weight], [Audio]) VALUES (515165465, 6969, N'afsd', 15, 6969, N'adsf', 14, N'545', N'515', N'afsas')
+SET IDENTITY_INSERT [dbo].[Pokemon] OFF
 GO
 INSERT [dbo].[Category] ([CategoryID], [CategoryName], [PokemonId]) VALUES (1, N'Team1', N'1         ')
 GO
