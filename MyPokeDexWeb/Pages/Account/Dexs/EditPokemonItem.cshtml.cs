@@ -129,11 +129,11 @@ namespace MyPokeDexWeb.Pages.Account.Dexs
 			{
 				using (SqlConnection conn = new SqlConnection(SecurityHelper.GetDBConnectionString()))
 				{
-					string cmdText = "UPDATE  Pokemon SET PokemonID=@pokemonID, [Dex Number]=@dexNumber, Name=@name, TypeID=@type, [State Total]=@stateTotal," +
+					string cmdText = "UPDATE  Pokemon SET /*PokemonID=@pokemonID,*/ [Dex Number]=@dexNumber, Name=@name, TypeID=@type, [State Total]=@stateTotal," +
 						"[image URL]=@imageURL, RegionID=@region, Height=@height, Weight =@weight, Audio=@audio " +
 						"WHERE PokemonID = @itemid";
 					SqlCommand cmd = new SqlCommand(cmdText, conn);
-					cmd.Parameters.AddWithValue("@pokemonID", Pokemon.PokemonID);
+					//cmd.Parameters.AddWithValue("@pokemonID", Pokemon.PokemonID);
 					cmd.Parameters.AddWithValue("@dexNUmber", Pokemon.DexNumber);
 					cmd.Parameters.AddWithValue("@name", Pokemon.Name);
 					cmd.Parameters.AddWithValue("@type", Pokemon.TypeID);
