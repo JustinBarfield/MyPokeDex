@@ -5,6 +5,13 @@
     Layout = HttpContext.User.Identity.IsAuthenticated ? "_Layout -Authenticated" : "_Layout";
 }
 <style>
+
+
+    @@font-face {
+        font-family: Pokemon;
+        src: url(/Fonts/PokemonFont.ttf);
+    }
+
     .table {
         border-collapse: collapse;
         width: 100%;
@@ -14,6 +21,9 @@
     th, td {
         text-align: left;
         padding: 8px;
+    }
+    th{
+        font-family: Pokemon;
     }
 
     tr:nth-child(even) {
@@ -36,19 +46,19 @@
     <div class="container py-5">
         <form method="post" class="form-group">
             <div class="row m-2">
-                <div class="col-2">
+                <div class="col-1">
                     <label class="form-label">Region</label>
                 </div>
-                <div class="col-8">
+                <div class="col-2">
                     <select asp-for="SelectedRegionID" asp-items="Model.RegionID"></select>
                 </div>
                 
             </div>
             <div class="row m-2">
-                <div class="col-2">
+                <div class="col-1">
                     <label class="form-label">Type</label>
                 </div>
-                <div class="col-8">
+                <div class="col-2">
                     <select asp-for="SelectedTypeID" asp-items="Model.TypeID"></select>
                 </div>
             </div>
@@ -64,7 +74,6 @@
                 <table class="table">
                     <thead>
                         <tr>
-                            <th>Pokemon ID</th>
                             <th>Dex Number</th>
                             <th>Name</th>
                             <th>Type</th>
@@ -73,13 +82,13 @@
                             <th>Height</th>
                             <th>Weight</th>
                             <th>Edit</th>
+                            <th>Delete</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach (var pokemon in Model.PokemonItems)
                         {
                             <tr>
-                                <td>@pokemon.PokemonID</td>
                                 <td>@pokemon.DexNumber</td>
                                 <td>@pokemon.Name</td>
                                 <td>@pokemon.PokemonTypeID</td> <!-- Display type name here -->
