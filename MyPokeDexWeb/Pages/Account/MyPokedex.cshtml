@@ -1,7 +1,7 @@
 ﻿@page
 @model MyPokeDexWeb.Pages.Account.MyPokedexModel
 @{
-    
+    Layout = HttpContext.User.Identity.IsAuthenticated ? "_Layout -Authenticated" : "_Layout";
 }
 
 <section>
@@ -11,7 +11,7 @@
                
                 
 
-                <div class="row m-2">
+                @* <div class="row m-2">
                     <div class="col-2">
                         <label class="form-label">Type</label>
                     </div>
@@ -19,7 +19,7 @@
                         <select asp-for="SelectedCategoryID" asp-items="Model.CategoryList"></select>
                     </div>
                 </div>
-
+ *@
 
                 <div class="col-2">
                     <button type="submit" class="btn btn-primary">Display</button>
@@ -38,7 +38,7 @@
                             <th>Region Name</th>
                             <th>Height</th>
                             <th>Weight</th>
-                            <th>Edit</th>
+                            
                         </tr>
                     </thead>
                     <tbody>
@@ -49,13 +49,13 @@
                                 <td>@pokemon.DexNumber</td>
                                 <td>@pokemon.Name</td>
                                 <td>@pokemon.TypeID</td>
-                                <td>@pokemon.TypeName</td>
+                                
                                 <td>@pokemon.StateTotal</td>
                                 <td>@pokemon.RegionID</td>
-                                <td>@pokemon.RegionName</td>
+                                
                                 <td>@pokemon.Height</td>
                                 <td>@pokemon.Weight</td>
-                                <td><a asp-page="EditPokemonItem" asp-route-id="@pokemon.PokemonID" class="btn btn-primary">Edit</a></td>
+                                
                             </tr>
                         }
                     </tbody>

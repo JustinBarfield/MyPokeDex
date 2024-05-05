@@ -95,67 +95,140 @@ namespace MyPokeDexWeb.Pages.Account.Dexs
             }
 		}
 
-		private void PopulateCategoryList()
-		{
-			using (SqlConnection conn = new SqlConnection(SecurityHelper.GetDBConnectionString()))
-			{
-
-				string cmdText = ("SELECT CategoryID, CategoryName FROM Category");
-				SqlCommand cmd = new SqlCommand(cmdText, conn);
-				conn.Open();
-				SqlDataReader reader = cmd.ExecuteReader();
-
-				if (reader.HasRows)
-				{
-					while (reader.Read())
-					{
-						CategoryInfo item = new CategoryInfo();
-						item.CategoryId = reader.GetInt32(0);
-						item.CategoryName = reader.GetString(1);
-						item.isSelected = false;
-						categories.Add(item);
-					}
-				}
-			}
-		}
-
-		public IActionResult OnPost(int id)
+        private void PopulateCategoryList()
         {
-            PopluateDexItem(id);
-            PopulateRegionDDL();
-            PopulateTypeDDL();
-            
+            using (SqlConnection conn = new SqlConnection(SecurityHelper.GetDBConnectionString()))
+            {
+                string cmdText = "SELECT CategoryID, CategoryName FROM Category";
+                SqlCommand cmd = new SqlCommand(cmdText, conn);
+                conn.Open();
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        CategoryInfo item = new CategoryInfo();
+
+                        // Retrieve CategoryID (always an integer, so no null check needed here)
+                        item.CategoryId = reader.GetInt32(0);
+
+                        // Check for NULL values in CategoryName column
+                        if (!reader.IsDBNull(1))
+                        {
+                            // Retrieve CategoryName if not NULL
+                            item.CategoryName = reader.GetString(1);
+                        }
+                        else
+                        {
+                            // Handle the case where CategoryName is NULL (set a default value or leave blank)
+                            item.CategoryName = string.Empty; // You can adjust this according to your needs
+                        }
+
+                        item.isSelected = false; // Set default value for isSelected
+                        categories.Add(item);
+                    }
+                }
+            }
+        }
+
+        public IActionResult OnPost(int id)
+        {
+            // Populate necessary dropdowns and properties (not shown)
+
             if (ModelState.IsValid)
-			{
-				using (SqlConnection conn = new SqlConnection(SecurityHelper.GetDBConnectionString()))
-				{
-					string cmdText = "UPDATE  Pokemon SET /*PokemonID=@pokemonID,*/ [Dex Number]=@dexNumber, Name=@name, TypeID=@type, [State Total]=@stateTotal," +
-						"[image URL]=@imageURL, RegionID=@region, Height=@height, Weight =@weight, Audio=@audio " +
-						"WHERE PokemonID = @itemid";
-					SqlCommand cmd = new SqlCommand(cmdText, conn);
-					//cmd.Parameters.AddWithValue("@pokemonID", Pokemon.PokemonID);
-					cmd.Parameters.AddWithValue("@dexNUmber", Pokemon.DexNumber);
-					cmd.Parameters.AddWithValue("@name", Pokemon.Name);
-					cmd.Parameters.AddWithValue("@type", Pokemon.TypeID);
-					cmd.Parameters.AddWithValue("@stateTotal", Pokemon.StateTotal);
-					cmd.Parameters.AddWithValue("@imageURL", Pokemon.ImageURL);
-					cmd.Parameters.AddWithValue("@region", Pokemon.RegionID);
-					cmd.Parameters.AddWithValue("@height", Pokemon.Height);
-					cmd.Parameters.AddWithValue("@weight", Pokemon.Weight);
-					cmd.Parameters.AddWithValue("@audio", Pokemon.Audio);
-					cmd.Parameters.AddWithValue("@itemID", id);
+            {
+                try
+                {
+                    using (SqlConnection conn = new SqlConnection(SecurityHelper.GetDBConnectionString()))
+                    {
+                        // Begin a transaction to handle the update of both tables
+                        conn.Open();
+                        SqlTransaction transaction = conn.BeginTransaction();
 
-					conn.Open();
-					cmd.ExecuteNonQuery();
-					return RedirectToPage("ViewDexItems");
-				}
-			}
-			else
-			{
-				return Page();
+                        try
+                        {
+                            // Update the Pokemon table
+                            string updatePokemonQuery = @"
+                        UPDATE Pokemon
+                        SET [Dex Number] = @dexNumber,
+                            Name = @name,
+                            TypeID = @type,
+                            [State Total] = @stateTotal,
+                            [Image URL] = @imageURL,
+                            RegionID = @region,
+                            Height = @height,
+                            Weight = @weight,
+                            Audio = @audio
+                        WHERE PokemonID = @pokemonID;
+                    ";
+                            SqlCommand cmdPokemon = new SqlCommand(updatePokemonQuery, conn, transaction);
+                            cmdPokemon.Parameters.AddWithValue("@dexNumber", Pokemon.DexNumber);
+                            cmdPokemon.Parameters.AddWithValue("@name", Pokemon.Name);
+                            cmdPokemon.Parameters.AddWithValue("@type", Pokemon.TypeID);
+                            cmdPokemon.Parameters.AddWithValue("@stateTotal", Pokemon.StateTotal);
+                            cmdPokemon.Parameters.AddWithValue("@imageURL", Pokemon.ImageURL);
+                            cmdPokemon.Parameters.AddWithValue("@region", Pokemon.RegionID);
+                            cmdPokemon.Parameters.AddWithValue("@height", Pokemon.Height);
+                            cmdPokemon.Parameters.AddWithValue("@weight", Pokemon.Weight);
+                            cmdPokemon.Parameters.AddWithValue("@audio", Pokemon.Audio);
+                            cmdPokemon.Parameters.AddWithValue("@pokemonID", id);
+                            cmdPokemon.ExecuteNonQuery();
 
-			}
-		}
+                            // Delete existing category associations for the Pokemon
+                            string deletePokemonCategoriesQuery = @"
+                        DELETE FROM Category
+                        WHERE PokemonID = @pokemonID;
+                    ";
+                            SqlCommand cmdDeleteCategories = new SqlCommand(deletePokemonCategoriesQuery, conn, transaction);
+                            cmdDeleteCategories.Parameters.AddWithValue("@pokemonID", id);
+                            cmdDeleteCategories.ExecuteNonQuery();
+
+                            // Insert new category associations for the Pokemon
+                            foreach (int categoryId in selectedCategoryIds)
+                            {
+                                string insertPokemonCategoryQuery = @"
+                            INSERT INTO Category (PokemonID, CategoryID)
+                            VALUES (@pokemonID, @categoryId);
+                        ";
+                                SqlCommand cmdInsertCategory = new SqlCommand(insertPokemonCategoryQuery, conn, transaction);
+                                cmdInsertCategory.Parameters.AddWithValue("@pokemonID", id);
+                                cmdInsertCategory.Parameters.AddWithValue("@categoryId", categoryId);
+                                cmdInsertCategory.ExecuteNonQuery();
+                            }
+
+                            // Commit the transaction
+                            transaction.Commit();
+
+                            return RedirectToPage("ViewDexItems");
+                        }
+                        catch (Exception ex)
+                        {
+                            // Rollback the transaction on error
+                            transaction.Rollback();
+
+                            // Log error and return a page with the error message
+                            ModelState.AddModelError(string.Empty, $"An error occurred while updating the record: {ex.Message}");
+                            return Page();
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    // Log error
+                    ModelState.AddModelError(string.Empty, $"An error occurred while updating the record: {ex.Message}");
+                    return Page();
+                }
+            }
+            else
+            {
+                // Return the page with validation errors
+                return Page();
+            }
+        }
+
+
+
 
         private void PopulateTypeDDL()
         {

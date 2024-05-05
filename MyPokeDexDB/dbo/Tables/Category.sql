@@ -1,8 +1,10 @@
 ﻿CREATE TABLE [dbo].[Category] (
-    [CategoryID]   INT        NOT NULL,
-    [CategoryName] TEXT       NOT NULL,
-    [PokemonId]    NCHAR (10) NOT NULL
+    [CategoryID]   INT        NULL,
+    [CategoryName] TEXT       NULL,
+    [PokemonId]    NCHAR (10) NULL
 );
+
+
 
 
 

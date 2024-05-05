@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Data.SqlClient;
 using MyPokedexBusiness;
 using MyPokeDexWeb.Model;
+using MyPokeDexWeb.Pages.Account.Dexs;
 using System.Collections.Generic;
 
 namespace MyPokeDexWeb.Pages.Account
@@ -24,7 +25,7 @@ namespace MyPokeDexWeb.Pages.Account
         // Method to handle GET requests
         public void OnGet()
         {
-            PopulateCategories();
+            //PopulateCategories();
             PopulateAllPokemon();
         }
 
@@ -38,7 +39,7 @@ namespace MyPokeDexWeb.Pages.Account
             PopulatePokemonByCategory(selectedCategoryId);
 
             // Re-populate the category list to maintain it after form submission
-            PopulateCategories();
+            //PopulateCategories();
         }
 
         private void PopulatePokemonByCategory(int categoryId)
@@ -101,40 +102,40 @@ namespace MyPokeDexWeb.Pages.Account
             }
         }
 
-        private void PopulateCategories()
-        {
-            // Assuming you have a database connection helper
-            using (SqlConnection conn = new SqlConnection(SecurityHelper.GetDBConnectionString()))
-            {
-                // SQL query to retrieve categories from the database
-                string cmdText = "SELECT CategoryID, CategoryName FROM Category";
+        //private void PopulateCategories()
+        //{
+        //    using (SqlConnection conn = new SqlConnection(SecurityHelper.GetDBConnectionString()))
+        //    {
+        //        string cmdText = "SELECT CategoryID, CategoryName FROM Category";
+        //        SqlCommand cmd = new SqlCommand(cmdText, conn);
+        //        conn.Open();
+        //        SqlDataReader reader = cmd.ExecuteReader();
 
-                // Create a SqlCommand object with the query and connection
-                SqlCommand cmd = new SqlCommand(cmdText, conn);
+        //        if (reader.HasRows)
+        //        {
+        //            while (reader.Read())
+        //            {
+        //                CategoryInfo category = new CategoryInfo();
+        //                category.CategoryId = reader.GetInt32(0);
 
-                // Open the database connection
-                conn.Open();
+        //                // Check if the CategoryName column is NULL
+        //                if (!reader.IsDBNull(1))
+        //                {
+        //                    category.CategoryName = reader.GetString(1);
+        //                }
+        //                else
+        //                {
+        //                    // Handle NULL case (e.g., set to default value)
+        //                    category.CategoryName = string.Empty; // Set to default value (empty string)
+        //                }
 
-                // Execute the query and retrieve the data
-                SqlDataReader reader = cmd.ExecuteReader();
+        //                // Add the category to your list or other data structure
+        //                CategoryList.Add(category);
+        //            }
+        //        }
+        //    }
+        //}
 
-                // Clear the existing list (if any)
-                CategoryList.Clear();
-
-                // Iterate through the result set
-                while (reader.Read())
-                {
-                    var categoryItem = new SelectListItem
-                    {
-                        Value = reader.GetInt32(0).ToString(),
-                        Text = reader.GetString(1)
-                    };
-
-                    // Add the item to the CategoryList
-                    CategoryList.Add(categoryItem);
-                }
-            }
-        }
 
         // Method to populate all Pokémon items
         private void PopulateAllPokemon()
