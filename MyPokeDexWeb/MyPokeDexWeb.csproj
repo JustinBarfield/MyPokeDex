@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="wwwroot\images\PokeBall.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\images\Pointer.ico" />
   </ItemGroup>
 
   <ItemGroup>

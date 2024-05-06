@@ -5,6 +5,33 @@
 }
 
 <style>
+
+    html {
+        cursor: url('/images/Cursor.ico'), default;
+    }
+
+
+    .form-control {
+        cursor: url('/images/Type.ico'), default;
+    }
+
+    .form-label {
+        cursor: url('/images/Cursor.ico'), default;
+    }
+
+    #btnUpdate {
+        cursor: url('/images/Pointer.ico'), default;
+    }
+
+    .drop {
+        cursor: url('/images/Cursor.ico'), default;
+    }
+
+    .check, .checkLabel {
+        cursor: url('/images/Cursor.ico'), default;
+    }
+
+
     .custom-btn {
         width: 100%;
     }
@@ -62,7 +89,7 @@
                                         <label asp-for="Pokemon.TypeID " class="form-label"> </label>
                                     </div>
                                     <div class="col-10">
-                                        <select asp-for="Pokemon.TypeID" asp-items="@Model.Type">  </select>
+                                        <select asp-for="Pokemon.TypeID" asp-items="@Model.Type" class="drop">  </select>
                                         <span asp-validation-for="Pokemon.TypeID" class="text-danger"></span>
                                     </div>
 
@@ -83,7 +110,7 @@
                                         <label asp-for="Pokemon.RegionID" class="form-label"></label>
                                     </div>
                                     <div class="col-10">
-                                        <select asp-for="Pokemon.RegionID" asp-items="@Model.RegionID">  </select>
+                                        <select asp-for="Pokemon.RegionID" asp-items="@Model.RegionID" class="drop">  </select>
                                         <span asp-validation-for="Pokemon.RegionID" class="text-danger"></span>
                                     </div>
                                 </div>
@@ -131,8 +158,8 @@
 
                                 @foreach (CategoryInfo category in Model.categories)
                                 {
-                                    <input type="checkbox" name="SelectedCategoryIDs" value="@category.CategoryId" checked="@category.isSelected" />
-                                    <label>@category.CategoryName</label>
+                                    <input class="check" type="checkbox" name="SelectedCategoryIDs" value="@category.CategoryId" checked="@category.isSelected" />
+                                    <label class="checkLabel">@category.CategoryName</label>
                                 }
 
 

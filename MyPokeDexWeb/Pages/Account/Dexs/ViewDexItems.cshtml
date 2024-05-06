@@ -6,6 +6,27 @@
 }
 <style>
 
+    html{
+        cursor: url('/images/Cursor.ico'), default;
+    }
+
+    #btnEdit{
+        cursor: url('/images/Pointer.ico'), default;
+    }
+
+    #btnDel{
+        cursor: url('/images/Pointer.ico'), default;
+    }
+
+    #btnView{
+        cursor: url('/images/Pointer.ico'), default;
+    }
+
+    .drop, .form-label{
+        cursor: url('/images/Cursor.ico'), default;
+    }
+
+
 
     @@font-face {
         font-family: Pokemon;
@@ -50,7 +71,7 @@
                     <label class="form-label">Region</label>
                 </div>
                 <div class="col-2">
-                    <select asp-for="SelectedRegionID" asp-items="Model.RegionID"></select>
+                    <select asp-for="SelectedRegionID" asp-items="Model.RegionID" class="drop"></select>
                 </div>
                 
             </div>
@@ -59,7 +80,7 @@
                     <label class="form-label">Type</label>
                 </div>
                 <div class="col-2">
-                    <select asp-for="SelectedTypeID" asp-items="Model.TypeID"></select>
+                    <select asp-for="SelectedTypeID" asp-items="Model.TypeID" class="drop"></select>
                 </div>
             </div>
 
@@ -97,8 +118,8 @@
                                 <td>@pokemon.Height</td>
                                 <td>@pokemon.Weight</td>
 
-                                <td><a asp-page="EditPokemonItem" asp-route-id="@pokemon.PokemonID" class="btn btn-primary"><i class="bi bi-pencil-square"></i>Edit</a></td>
-                                <td><a asp-page="DeletePokemon" asp-route-id="@pokemon.PokemonID" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this Pokemon? this cannot be undone!')"><i class="bi bi-trash3"></i>Delete</a></td>
+                                <td><a asp-page="EditPokemonItem" asp-route-id="@pokemon.PokemonID" class="btn btn-primary" id="btnEdit"><i class="bi bi-pencil-square"></i>Edit</a></td>
+                                <td><a asp-page="DeletePokemon" asp-route-id="@pokemon.PokemonID" class="btn btn-danger" id="btnDel" onclick="return confirm('Are you sure you want to delete this Pokemon? this cannot be undone!')"><i class="bi bi-trash3"></i>Delete</a></td>
 
                             </tr>
                         }
