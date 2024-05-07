@@ -38,7 +38,7 @@
             min-height: 50%;
     }
 
-    h1{
+    h1, h3{
         font-family:Pokemon;
 
     }
@@ -94,46 +94,121 @@
             <p>Start your journey by exploring Pokémon from various regions and adding them to your personal Pokédex.</p>
             <a class="nav-link text-blue" id="addNav" asp-area="" asp-page="/Account/Dexs/AddPokemon">Add Pokémon to Your Dex</a>
         </div>
+
+        <div class="col-md-12 text-center">
+            <h3>Info</h3>
+            <p>
+                The table below is an example of what your pokedex can look like, 
+                feel free to use the info in this table for your own pokedex!
+            </p>
+        </div>
+
     </div>
 </section>
     
 
 
 <section>
-    <div class="container py-5">
-            <div class="table-responsive">
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>Pokemon ID</th>
-                            <th>Dex Number</th>
-                            <th>Name</th>
-                            <th>Type</th>
-                            <th>Total State</th>
-                            
-                            <th>Region</th>
-                            <th>Height</th>
-                            <th>Weight</th>
-                            
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var pokemon in Model.PokemonItems)
-                        {
-                            <tr>
-                                <td>@pokemon.PokemonID</td>
-                                <td>@pokemon.DexNumber</td>
-                                <td>@pokemon.Name</td>
-                                <td>@pokemon.PokemonTypeID</td> <!-- Display type name here -->
-                                <td>@pokemon.StateTotal</td>
-                                <td>@pokemon.PokemonRegionID</td> <!-- Display region name here -->
-                                <td>@pokemon.Height</td>
-                                <td>@pokemon.Weight</td>
-                                
-                            </tr>
-                        }
-                    </tbody>
-                </table>
-            </div>
-    </div>
+	<div class="container py-5">
+		<div class="table-responsive">
+			<table class="table">
+				<thead>
+					<tr>
+						<th>Dex Number</th>
+						<th>Name</th>
+						<th>Type</th>
+						<th>Stat Total</th>
+						<th>Region</th>
+						<th>Height</th>
+						<th>Weight</th>
+
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>001</td>
+						<td>Bulbasaur</td>
+						<td>Grass/Posion</td>
+						<td>318</td>
+						<td>Kanto</td>
+						<td>0.7m</td>
+						<td>6.9kg</td>
+
+					</tr>
+					<tr>
+						<td>002</td>
+						<td>Ivysaur</td>
+						<td>Grass/Posion</td>
+						<td>405</td>
+						<td>Kanto</td>
+						<td>1.0m</td>
+						<td>13.0kg</td>
+					</tr>
+					<tr>
+						<td>003</td>
+						<td>Venasaur</td>
+						<td>Grass/Posion</td>
+						<td>525</td>
+						<td>Kanto</td>
+						<td>2.0m</td>
+						<td>100.0kg</td>
+					</tr>
+					<tr>
+                        <td>004</td>
+                        <td>Charmander</td>
+                        <td>Fire</td>
+                        <td>309</td>
+                        <td>Kanto</td>
+                        <td>0.6m</td>
+                        <td>8.5kg</td>
+					</tr>
+                    <tr>
+                        <td>005</td>
+                        <td>Charmeleon</td>
+                        <td>Fire</td>
+                        <td>405</td>
+                        <td>Kanto</td>
+                        <td>1.1m</td>
+                        <td>19.0kg</td>
+                    </tr>
+                    <tr>
+                        <td>006</td>
+                        <td>Charizard</td>
+                        <td>Fire/Flying</td>
+                        <td>534</td>
+                        <td>Kanto</td>
+                        <td>1.7m</td>
+                        <td>90.5kg</td>
+                    </tr>
+                    <tr>
+                        <td>007</td>
+                        <td>Squritle</td>
+                        <td>Water</td>
+                        <td>314</td>
+                        <td>Kanto</td>
+                        <td>0.5m</td>
+                        <td>9.0kg</td>
+					</tr>
+                    <tr>
+                        <td>008</td>
+                        <td>Wartortal</td>
+                        <td>Water</td>
+                        <td>405</td>
+                        <td>Kanto</td>
+                        <td>1.0m</td>
+                        <td>22.5kg</td>
+                    </tr>
+                    <tr>
+                        <td>009</td>
+                        <td>Blastoise</td>
+                        <td>Water</td>
+                        <td>530</td>
+                        <td>Kanto</td>
+                        <td>1.6m</td>
+                        <td>85.5kg</td>
+                    </tr
+				</tbody>
+			</table>
+		</div>
+	</div>
 </section>
