@@ -31,29 +31,40 @@ namespace MyPokeDexWeb.Pages.Account.Dexs
 			PopulateCategoryList();
 
 		}
-		private void PopulateCategoryList()
-		{
-			using (SqlConnection conn = new SqlConnection(SecurityHelper.GetDBConnectionString()))
-			{
+        private void PopulateCategoryList()
+        {
+            using (SqlConnection conn = new SqlConnection(SecurityHelper.GetDBConnectionString()))
+            {
+                string cmdText = "SELECT CategoryID, CategoryName FROM Category";
+                SqlCommand cmd = new SqlCommand(cmdText, conn);
+                conn.Open();
+                SqlDataReader reader = cmd.ExecuteReader();
 
-				string cmdText = ("SELECT CategoryID, CategoryName FROM Category");
-				SqlCommand cmd = new SqlCommand(cmdText, conn);
-				conn.Open();
-				SqlDataReader reader = cmd.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        CategoryInfo item = new CategoryInfo();
+                        item.CategoryId = reader.GetInt32(0);
 
-				if (reader.HasRows)
-				{
-					while (reader.Read())
-					{
-						CategoryInfo item = new CategoryInfo();
-						item.CategoryId = reader.GetInt32(0);
-						item.CategoryName = reader.GetString(1);
-						item.isSelected = false;
-						categories.Add(item);
-					}
-				}
-			}
-		}
+                        // Handle NULL values for CategoryName
+                        if (!reader.IsDBNull(1))
+                        {
+                            item.CategoryName = reader.GetString(1);
+                        }
+                        else
+                        {
+                            // Handle the case where CategoryName is NULL
+                            item.CategoryName = null; // or set a default value as desired
+                        }
+
+                        item.isSelected = false;
+                        categories.Add(item);
+                    }
+                }
+            }
+        }
+
 
         public IActionResult OnPost()
         {

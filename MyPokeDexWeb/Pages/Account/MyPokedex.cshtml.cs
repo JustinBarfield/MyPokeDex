@@ -25,7 +25,7 @@ namespace MyPokeDexWeb.Pages.Account
         // Method to handle GET requests
         public void OnGet()
         {
-            //PopulateCategories();
+            PopulateCategories();
             PopulateAllPokemon();
         }
 
@@ -39,7 +39,7 @@ namespace MyPokeDexWeb.Pages.Account
             PopulatePokemonByCategory(selectedCategoryId);
 
             // Re-populate the category list to maintain it after form submission
-            //PopulateCategories();
+            PopulateCategories();
         }
 
         private void PopulatePokemonByCategory(int categoryId)
@@ -102,39 +102,33 @@ namespace MyPokeDexWeb.Pages.Account
             }
         }
 
-        //private void PopulateCategories()
-        //{
-        //    using (SqlConnection conn = new SqlConnection(SecurityHelper.GetDBConnectionString()))
-        //    {
-        //        string cmdText = "SELECT CategoryID, CategoryName FROM Category";
-        //        SqlCommand cmd = new SqlCommand(cmdText, conn);
-        //        conn.Open();
-        //        SqlDataReader reader = cmd.ExecuteReader();
+        private void PopulateCategories()
+        {
+            using (SqlConnection conn = new SqlConnection(SecurityHelper.GetDBConnectionString()))
+            {
+                string cmdText = "SELECT CategoryID, CategoryName FROM Category";
+                SqlCommand cmd = new SqlCommand(cmdText, conn);
+                conn.Open();
+                SqlDataReader reader = cmd.ExecuteReader();
 
-        //        if (reader.HasRows)
-        //        {
-        //            while (reader.Read())
-        //            {
-        //                CategoryInfo category = new CategoryInfo();
-        //                category.CategoryId = reader.GetInt32(0);
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        // Create a new SelectListItem based on the retrieved data
+                        var category = new SelectListItem
+                        {
+                            Value = reader.GetInt32(0).ToString(), // Set the value to the CategoryID
+                            Text = !reader.IsDBNull(1) ? reader.GetString(1) : string.Empty // Set the text to CategoryName or an empty string if null
+                        };
 
-        //                // Check if the CategoryName column is NULL
-        //                if (!reader.IsDBNull(1))
-        //                {
-        //                    category.CategoryName = reader.GetString(1);
-        //                }
-        //                else
-        //                {
-        //                    // Handle NULL case (e.g., set to default value)
-        //                    category.CategoryName = string.Empty; // Set to default value (empty string)
-        //                }
+                        // Add the SelectListItem to the CategoryList
+                        CategoryList.Add(category);
+                    }
+                }
+            }
+        }
 
-        //                // Add the category to your list or other data structure
-        //                CategoryList.Add(category);
-        //            }
-        //        }
-        //    }
-        //}
 
 
         // Method to populate all Pokémon items
