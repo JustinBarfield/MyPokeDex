@@ -4,7 +4,57 @@
     Layout = HttpContext.User.Identity.IsAuthenticated ? "_Layout -Authenticated" : "_Layout";
 }
 
-<div class="bg-container"><img src="/images/PokemonBackground.png" /></div>
+
+
+<style>
+
+        html {
+            cursor: url('/images/Cursor.ico'), default;
+        }
+
+        #btnEdit {
+            cursor: url('/images/Pointer.ico'), default;
+        }
+
+        #btnDel {
+            cursor: url('/images/Pointer.ico'), default;
+        }
+
+        #btnView {
+            cursor: url('/images/Pointer.ico'), default;
+        }
+
+        .drop, .form-label {
+            cursor: url('/images/Cursor.ico'), default;
+        }
+
+
+        .table {
+            border-collapse: collapse;
+            width: 100%;
+            border-style: groove;
+        }
+
+        th, td {
+            text-align: left;
+            padding: 8px;
+        }
+
+
+        tr:nth-child(even) {
+            background-color: Lightgrey;
+        }
+
+
+        .custom-btn {
+            width: 100%;
+        }
+
+        img {
+            max-width: 1px;
+            height: auto;
+        }
+</style>
 
 <section>
     <div class="container py-5">
