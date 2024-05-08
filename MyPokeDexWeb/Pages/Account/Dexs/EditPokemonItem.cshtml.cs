@@ -134,7 +134,7 @@ namespace MyPokeDexWeb.Pages.Account.Dexs
 
         public IActionResult OnPost(int id)
         {
-            // Populate necessary dropdowns and properties (not shown)
+            
 
             if (ModelState.IsValid)
             {

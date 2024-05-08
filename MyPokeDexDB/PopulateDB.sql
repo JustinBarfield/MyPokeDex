@@ -6,8 +6,6 @@ INSERT [dbo].[Roles] ([RoleID], [RoleName]) VALUES (2, N'User')
 GO
 SET IDENTITY_INSERT [dbo].[Person] ON 
 GO
-INSERT [dbo].[Person] ([PersonID], [FirstName], [LastName], [Email], [Password], [RoleID], [Phone], [LastLoginTime]) VALUES (4, N'Justin', N'Barfield', N'justinbarfield02@gmail.com', N'$2a$13$WMYtvHkj1GLuO/wMiWVNhe8Oj5.Jztb6cLBVGbOw5zjUHVTznZjjO', 1, N'8178569902', CAST(N'2024-05-07' AS Date))
-GO
 INSERT [dbo].[Person] ([PersonID], [FirstName], [LastName], [Email], [Password], [RoleID], [Phone], [LastLoginTime]) VALUES (1002, N'demo', N'demo', N'demo@gmail.com', N'$2a$13$eBAEUKM4KKeGqW82q3LOOO4.A9X3kOUe1m9JkOYvEYKK1iMSMgWPy', 2, N'12345', CAST(N'2024-04-25' AS Date))
 GO
 INSERT [dbo].[Person] ([PersonID], [FirstName], [LastName], [Email], [Password], [RoleID], [Phone], [LastLoginTime]) VALUES (2002, N'AD', N'ASDF', N'justin@gmail.com', N'$2a$13$/VZEHlVwT9QDHBeW5QW1xu1ba7WwyuDjr1eOT84EQLoJ7V/lFNKyi', 2, N'321', NULL)
@@ -19,6 +17,14 @@ GO
 INSERT [dbo].[Person] ([PersonID], [FirstName], [LastName], [Email], [Password], [RoleID], [Phone], [LastLoginTime]) VALUES (4003, N'Justin', N'Barfield', N'justinbarfield05@gmail.com', N'$2a$13$bRBfW7clfQvkPgiyDUCJf.q9CjtoW/5vR8BYR72tdqCDOelqI7PbO', 2, N'8178569902', CAST(N'2024-04-25' AS Date))
 GO
 INSERT [dbo].[Person] ([PersonID], [FirstName], [LastName], [Email], [Password], [RoleID], [Phone], [LastLoginTime]) VALUES (5002, N'Justin', N'Barfield', N'justinbarfield06@gmail.com', N'$2a$13$iSrIqLncaZs0O3bbjs/cGeJM0zvno3/WspbaHtf32beiMKEALMWZC', 2, N'8178569902', NULL)
+GO
+INSERT [dbo].[Person] ([PersonID], [FirstName], [LastName], [Email], [Password], [RoleID], [Phone], [LastLoginTime]) VALUES (6002, N'Justin3', N'Barfield', N'justin05@gmail.com', N'$2a$13$bKlcnNWj6Fe.NyksIuLwQ.rouar9VG2gxWTMLdPaEovMsv7OJm6HO', 2, N'8178569902', NULL)
+GO
+INSERT [dbo].[Person] ([PersonID], [FirstName], [LastName], [Email], [Password], [RoleID], [Phone], [LastLoginTime]) VALUES (6003, N'justin10', N'barfield', N'justin10@gmail', N'$2a$13$sYyQ6JD0tUECl5wTYbQ7oe6nvWPJhZVZ4QcnzvLJiAjbgy48ekzja', 2, N'456123', NULL)
+GO
+INSERT [dbo].[Person] ([PersonID], [FirstName], [LastName], [Email], [Password], [RoleID], [Phone], [LastLoginTime]) VALUES (6004, N'easton', N'barfield', N'easton1@gmail.com', N'$2a$13$j1NmjamRF.tyvOcAF2H9sOBcLNcBZUY5XPrDbGOEpbgQIuyex1Y4C', 2, N'12345', CAST(N'2024-05-08' AS Date))
+GO
+INSERT [dbo].[Person] ([PersonID], [FirstName], [LastName], [Email], [Password], [RoleID], [Phone], [LastLoginTime]) VALUES (6005, N'Justin', N'Barfield', N'justinbarfield02@gmail.com', N'$2a$13$p9FG3JUY4150A07RL/gqauwoKDF.PKCLkPcGVlIANt9t8yuXQCWgK', 1, N'8178569902', CAST(N'2024-05-08' AS Date))
 GO
 SET IDENTITY_INSERT [dbo].[Person] OFF
 GO
@@ -94,7 +100,7 @@ INSERT [dbo].[Region] ([RegionID], [RegionName]) VALUES (16, N'Hokkaido')
 GO
 SET IDENTITY_INSERT [dbo].[Pokemon] ON 
 GO
-INSERT [dbo].[Pokemon] ([PokemonID], [Dex Number], [Name], [TypeID], [State Total], [image URL], [RegionID], [Height], [Weight], [Audio]) VALUES (1, 1, N'pokemon123', 17, 100, N'https://assets.pokemon.com/assets/cms2/img/pokedex/full//133.png', 1, N'18', N'18', N'SDF')
+INSERT [dbo].[Pokemon] ([PokemonID], [Dex Number], [Name], [TypeID], [State Total], [image URL], [RegionID], [Height], [Weight], [Audio]) VALUES (1, 1, N'pokemon123', 14, 100, N'https://assets.pokemon.com/assets/cms2/img/pokedex/full//133.png', 12, N'17', N'18', N'SDF')
 GO
 INSERT [dbo].[Pokemon] ([PokemonID], [Dex Number], [Name], [TypeID], [State Total], [image URL], [RegionID], [Height], [Weight], [Audio]) VALUES (2, 11, N'test', 1, 100, N'https://www.google.com/imgres?q=pokemon&imgurl=https%3A%2F%2Fupload.wikimedia.org%2Fwikipedia%2Fcommons%2Fthumb%2F9%2F98%2FInternational_Pok%25C3%25A9mon_logo.svg%2F1200px-International_Pok%25C3%25A9mon_logo.svg.png&imgrefurl=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FPok%25C3%25A9mon&docid=VWc1sn0WEVMNkM&tbnid=6Mje8iNBjoua8M&vet=12ahUKEwjEr-zXw-qFAxUxJNAFHUN-BvIQM3oECA4QAA..i&w=1200&h=442&hcb=2&itg=1&ved=2ahUKEwjEr-zXw-qFAxUxJNAFHUN-BvIQM3oECA4QAA', 2, N'5415', N'545f', N'afd')
 GO
@@ -136,7 +142,7 @@ INSERT [dbo].[Pokemon] ([PokemonID], [Dex Number], [Name], [TypeID], [State Tota
 GO
 SET IDENTITY_INSERT [dbo].[Pokemon] OFF
 GO
-INSERT [dbo].[Category] ([CategoryID], [CategoryName], [PokemonId]) VALUES (3, N'Team1', N'1         ')
+INSERT [dbo].[Category] ([CategoryID], [CategoryName], [PokemonId]) VALUES (3, NULL, N'1         ')
 GO
 INSERT [dbo].[Category] ([CategoryID], [CategoryName], [PokemonId]) VALUES (2, N'Team2', N'2         ')
 GO
@@ -150,5 +156,6 @@ INSERT [dbo].[Category] ([CategoryID], [CategoryName], [PokemonId]) VALUES (3, N
 GO
 INSERT [dbo].[Category] ([CategoryID], [CategoryName], [PokemonId]) VALUES (3, N'Pokedex', N'2015      ')
 GO
-INSERT [dbo].[Category] ([CategoryID], [CategoryName], [PokemonId]) VALUES (3, NULL, N'3004      ')
+INSERT [dbo].[Category] ([CategoryID], [CategoryName], [PokemonId]) VALUES (3, N'Pokedex', N'3004      ')
 GO
+

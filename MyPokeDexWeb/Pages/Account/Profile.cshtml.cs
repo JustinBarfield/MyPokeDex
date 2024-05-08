@@ -1,3 +1,4 @@
+using System.Data;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -13,7 +14,7 @@ namespace MyPokeDexWeb.Pages.Account
     public class ProfileModel : PageModel
     {
         [BindProperty]
-        public UserProfile profile { get; set; } = new UserProfile();
+        public Person profile { get; set; } = new Person();
         public void OnGet()
         {
             PopulateProfile();
@@ -26,7 +27,7 @@ namespace MyPokeDexWeb.Pages.Account
             string email = HttpContext.User.FindFirstValue(ClaimValueTypes.Email);
             using(SqlConnection conn = new SqlConnection(SecurityHelper.GetDBConnectionString()))
             {
-                string cmdText = "SELECT FirstName, LastName, Email,Phone, LastLoginTime FROM Person WHERE Email=@email ";
+                string cmdText = "SELECT FirstName, LastName, Email,Phone, LastLoginTime, PersonId FROM Person WHERE Email=@email ";
                 SqlCommand cmd = new SqlCommand(cmdText, conn);
                 cmd.Parameters.AddWithValue("@email",email);
                 conn.Open();
@@ -39,6 +40,7 @@ namespace MyPokeDexWeb.Pages.Account
                     profile.Email = reader.GetString(2);    
                     profile.Phone = reader.GetString(3);
                     profile.LastLoginTime = reader.GetDateTime(4);
+                    profile.PersonId = reader.GetInt32(5);
                 }
 
 
